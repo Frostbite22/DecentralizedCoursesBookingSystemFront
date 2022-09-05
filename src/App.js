@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { useEffect, useState } from "react";
+import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
 
 import './App.css';
@@ -9,6 +9,7 @@ function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
   const [connEthers, setConnEthers] = useState();
+  const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
 
   const studentContractAddress = "0x7076842Da0B597642c71feE0B956f3a27c7F73F5";
   const studentContractABI = studentFactory.abi ; 
@@ -41,22 +42,6 @@ function App() {
     }
   };
 
-  const connectWallet = async () => {
-    try {
-      const { ethereum } = window;
-      if (!ethereum) {
-        alert("Get Metamask");
-        return;
-      }
-
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      console.log("Connected", [0]);
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log("error");
-    }
-  };
-
   function connectEthers() {
     const { ethereum } = window;
     if (ethereum) {
@@ -73,19 +58,31 @@ function App() {
     }
   }
 
-  useEffect(() => {
+
+  const studentsNumber = async (conn) => {
+    try {
+      let studentContract = conn ;
+      let currentLength = await studentContract.getStudentsLength();
+      setTotalStudentsNumber(currentLength.toNumber());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  useLayoutEffect(() => {
     checkIfWalletIsConnected();
-  }, []);
-
-
-  useEffect(() => {
-    connectWallet();
-  }, []);
+}, []);
 
 
   useEffect(() => {
     connectEthers();
-  }, []);
+  },[]);
+
+
+  useEffect(() => {
+    connEthers!==undefined ?studentsNumber(connEthers): connectEthers();
+  },[connEthers,totalStudentsNumber]);
 
 
 
@@ -94,6 +91,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+          {totalStudentsNumber}
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
