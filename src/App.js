@@ -69,6 +69,16 @@ function App() {
     }
   };
 
+  const getStd = async (conn) => {
+    try {
+      let studentContract = conn ;
+      const getStudent = await studentContract.getStudentById(0);
+      console.log(getStudent);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   useLayoutEffect(() => {
     checkIfWalletIsConnected();
@@ -83,6 +93,10 @@ function App() {
   useEffect(() => {
     connEthers!==undefined ?studentsNumber(connEthers): connectEthers();
   },[connEthers,totalStudentsNumber]);
+
+  useEffect(() => {
+    connEthers!==undefined ?getStd(connEthers): connectEthers();
+  },[connEthers]);
 
 
 
