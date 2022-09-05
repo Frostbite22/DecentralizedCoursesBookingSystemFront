@@ -99,6 +99,17 @@ function App() {
   },[connEthers]);
 
 
+  async function createStudent(conn)
+  {
+    let studentContract = conn ;
+    const studentToCreate = await studentContract.createStudent("hatem","doe","hatm@gmail.tn")
+    const student = await studentToCreate.wait();
+    const event = student.events.find(event => event.event === 'studentCreated');
+    const [id, first,last,account,email] = event.args;
+
+    console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
+    studentsNumber(connEthers)
+  }
 
     return (
     <div className="App">
@@ -108,6 +119,7 @@ function App() {
           {totalStudentsNumber}
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={() => {createStudent(connEthers)}}>create student</button>
         <a
           className="App-link"
           href="https://reactjs.org"
