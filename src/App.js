@@ -11,7 +11,7 @@ function App() {
   const [connEthers, setConnEthers] = useState();
   const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
 
-  const studentContractAddress = "0x7076842Da0B597642c71feE0B956f3a27c7F73F5";
+  const studentContractAddress = "0xc41b42048a1D396e9d011edDCb822E04d30AFc66";
   const studentContractABI = studentFactory.abi ; 
 
   const checkIfWalletIsConnected = async () => {
@@ -102,7 +102,7 @@ function App() {
   async function createStudent(conn)
   {
     let studentContract = conn ;
-    const studentToCreate = await studentContract.createStudent("hatem","doe","hatm@gmail.tn")
+    const studentToCreate = await studentContract.createStudent("hatem","doe","hatm@gmail.tn",currentAccount)
     const student = await studentToCreate.wait();
     const event = student.events.find(event => event.event === 'studentCreated');
     const [id, first,last,account,email] = event.args;
