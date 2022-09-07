@@ -1,46 +1,9 @@
-import logo from './logo.svg';
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
 
 import './App.css';
 import studentFactory from './utils/StudentFactory.json'
-
-FormCreateStudentAccount() 
-{
-
-  async function handleCreateStudent(conn)
-  {
-
-    let firstName = event.target.elements.firstName.value ;
-    let lastName = event.target.elements.lastName.value ;
-    let mail = event.target.elements.email.value ;
-
-    let studentContract = conn ;
-    const studentToCreate = await studentContract.createStudent("hatem","doe","hatm@gmail.tn",currentAccount)
-    const student = await studentToCreate.wait();
-    const event = student.events.find(event => event.event === 'studentCreated');
-    const [id, first,last,account,email] = event.args;
-
-    console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
-    studentsNumber(connEthers)
-  }
-  return(
-      <form  onSubmit={handleCreateStudent} >
-        <label htmlFor="firstName" >firstName
-          <input type="text" id="firstName" />
-        </label>
-        <label htmlFor="lastName" >firstName
-          <input type="text" id="lastName" />
-        </label>
-        <label htmlFor="email" >email
-          <input type="text" id="email" />
-        </label>
-
-        <input type="submit" value="Submit" className='btn'/>
-      </form>
-    )
-}
-
+import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 
 
 function App() {
@@ -153,32 +116,19 @@ function App() {
   },[connEthers]);
 
 
-
-
-
     return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {totalStudentsNumber}
-          Edit <code>src/App.js</code> and save to reload.
+      <div>
+      <p>
+          students number : {totalStudentsNumber}
         </p>
         {!currentAccount && (
           <button onClick={connectWallet}>
             connect Wallet
           </button>
         )}
-        <button onClick={() => {createStudent(connEthers)}}>create student</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <FormCreateStudentAccount currentAccount={currentAccount} connection={connEthers} studentsNumber={studentsNumber} />
+        </div>
     </div>
   );
 }
