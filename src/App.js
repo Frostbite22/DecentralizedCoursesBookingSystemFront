@@ -11,6 +11,7 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [connEthers, setConnEthers] = useState();
   const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
 
   const studentContractAddress = "0xc41b42048a1D396e9d011edDCb822E04d30AFc66";
   const studentContractABI = studentFactory.abi ; 
@@ -96,6 +97,25 @@ function App() {
     }
   };
 
+  const getStudentByAcc = async (conn) => 
+  {
+    try {
+      let studentContract = conn ;
+      const [id_,first,last,acc,mail]= await studentContract.getStudentByAccount(currentAccount);
+      setIsLoggedIn(true);
+      console.log(id_,first,last,acc,mail);  
+
+    } catch (error) {
+      setIsLoggedIn(false);
+      console.log(error);
+    }
+
+  }
+
+  useEffect(() => {
+    currentAccount!=="" ?getStudentByAcc(connEthers): connectEthers();
+  },[isLoggedIn,currentAccount])
+
 
   useLayoutEffect(() => {
     checkIfWalletIsConnected();
@@ -123,11 +143,13 @@ function App() {
           students number : {totalStudentsNumber}
         </p>
         {!currentAccount && (
-          <button onClick={connectWallet}>
+          <button className ="btn" onClick={connectWallet}>
             connect Wallet
           </button>
         )}
-        <FormCreateStudentAccount currentAccount={currentAccount} connection={connEthers} studentsNumber={studentsNumber} />
+          { !isLoggedIn &&(
+            <FormCreateStudentAccount currentAccount={currentAccount} connection={connEthers} studentsNumber={studentsNumber} />)
+          }
         </div>
     </div>
   );

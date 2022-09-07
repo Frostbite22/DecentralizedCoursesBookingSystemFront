@@ -1,5 +1,3 @@
-import { ethers } from "ethers";
-
 
 function FormCreateStudentAccount({currentAccount,connection,studentsNumber}) 
 {
@@ -12,7 +10,7 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber})
     let mail = event.target.elements.email.value ;
 
     let studentContract = connection ;
-    const studentToCreate = await studentContract.createStudent("hatem","doe","hatm@gmail.tn",currentAccount)
+    const studentToCreate = await studentContract.createStudent(firstName,lastName,mail,currentAccount)
     const student = await studentToCreate.wait();
     const event = student.events.find(event => event.event === 'studentCreated');
     const [id, first,last,account,email] = event.args;
@@ -24,7 +22,7 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber})
         <label htmlFor="firstName" >firstName
           <input type="text" id="firstName" />
         </label>
-        <label htmlFor="lastName" >firstName
+        <label htmlFor="lastName" >lastName
           <input type="text" id="lastName" />
         </label>
         <label htmlFor="email" >email
