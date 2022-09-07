@@ -58,6 +58,22 @@ function App() {
     }
   }
 
+  const connectWallet = async () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        alert("Get Metamask");
+        return;
+      }
+
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+      console.log("Connected", [0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
 
   const studentsNumber = async (conn) => {
     try {
@@ -119,6 +135,11 @@ function App() {
           {totalStudentsNumber}
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        {!currentAccount && (
+          <button onClick={connectWallet}>
+            connect Wallet
+          </button>
+        )}
         <button onClick={() => {createStudent(connEthers)}}>create student</button>
         <a
           className="App-link"
