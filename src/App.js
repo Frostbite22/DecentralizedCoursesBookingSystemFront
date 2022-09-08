@@ -5,6 +5,7 @@ import './App.css';
 import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 import NavBar from "./components/NavBar";
+import Profile from "./components/Profile";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 
@@ -172,12 +173,7 @@ function App() {
             </div>     
           }>
             <Route path="profile" element={
-              <div className="profile">
-                <p>Hello {firstName} {lastName} </p>
-                <p>{email}</p>
-                <p>{currentAccount}</p>
-            </div>    
-            }/>
+            <Profile firstName={firstName} lastName={lastName} email={email} account={currentAccount}/>}/>
           </Route>
         
 
