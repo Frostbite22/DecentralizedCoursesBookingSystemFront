@@ -159,11 +159,7 @@ function App() {
                   <div>
                     <NavBar firstName={firstName}/>
                     <p>students number : {totalStudentsNumber}</p>
-                    <div className="profile">
-                      <p>Hello {firstName} {lastName} </p>
-                      <p>{email}</p>
-                      <p>{currentAccount}</p>
-                    </div>
+                    <Outlet/>
                   </div>
                 )
               }
@@ -175,6 +171,13 @@ function App() {
               </div>
             </div>     
           }>
+            <Route path="profile" element={
+              <div className="profile">
+                <p>Hello {firstName} {lastName} </p>
+                <p>{email}</p>
+                <p>{currentAccount}</p>
+            </div>    
+            }/>
           </Route>
         
 
