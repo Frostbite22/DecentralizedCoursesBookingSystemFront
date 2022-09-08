@@ -1,12 +1,14 @@
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
+import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 import './App.css';
 import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
-import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
+import background from './welcome.jpg';
+
 
 
 
@@ -159,7 +161,6 @@ function App() {
                 isLoggedIn && (
                   <div>
                     <NavBar firstName={firstName}/>
-                    <p>students number : {totalStudentsNumber}</p>
                     <Outlet/>
                   </div>
                 )
@@ -172,6 +173,8 @@ function App() {
               </div>
             </div>     
           }>
+            <Route index element={
+            <img className='background' alt="background" src={background} />} />
             <Route path="profile" element={
             <Profile firstName={firstName} lastName={lastName} email={email} account={currentAccount}/>}/>
           </Route>

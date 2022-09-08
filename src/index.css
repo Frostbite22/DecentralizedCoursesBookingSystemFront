@@ -74,6 +74,21 @@ input[type=submit] {
   float: left;
 }
 
+.background 
+{
+
+  /* Full height */
+
+  max-width: 65%;
+  max-height: 100%;
+  margin : 0 ;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 .btn
 {
