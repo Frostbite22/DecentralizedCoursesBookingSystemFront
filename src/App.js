@@ -11,6 +11,10 @@ function App() {
   const [connEthers, setConnEthers] = useState();
   const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [firstName,setFirstName] = useState("");
+  const [lastName,setLastName] = useState("");
+  const [email,setEmail] = useState("");
+
 
   const studentContractAddress = "0xc41b42048a1D396e9d011edDCb822E04d30AFc66";
   const studentContractABI = studentFactory.abi ; 
@@ -101,6 +105,9 @@ function App() {
     try {
       let studentContract = conn ;
       const [id_,first,last,acc,mail]= await studentContract.getStudentByAccount(currentAccount);
+      setFirstName(first);
+      setLastName(last);
+      setEmail(mail);
       setIsLoggedIn(true);
 
     } catch (error) {
@@ -136,11 +143,20 @@ function App() {
     return (
     <div className="App">
       <div>
-      <p>
-          students number : {totalStudentsNumber}
-      </p>
       { !isLoggedIn &&(
         <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
+      }
+      {
+        isLoggedIn && (
+          <div>
+            <p>students number : {totalStudentsNumber}</p>
+            <div className="profile">
+              <p>Hello {firstName} {lastName} </p>
+              <p>{email}</p>
+              <p>{currentAccount}</p>
+            </div>
+          </div>
+        )
       }
       {!currentAccount && (
       <button className ="btn" onClick={connectWallet}>
