@@ -5,9 +5,6 @@ import './App.css';
 import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 
-
-
-
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
@@ -105,7 +102,6 @@ function App() {
       let studentContract = conn ;
       const [id_,first,last,acc,mail]= await studentContract.getStudentByAccount(currentAccount);
       setIsLoggedIn(true);
-      console.log(id_,first,last,acc,mail);  
 
     } catch (error) {
       setIsLoggedIn(false);

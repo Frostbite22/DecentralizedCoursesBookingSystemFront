@@ -10,8 +10,6 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setI
     let lastName = event.target.elements.lastName.value ;
     let mail = event.target.elements.email.value ;
 
-    console.log(mail)
-
     let studentContract = connection ;
     const studentToCreate = await studentContract.createStudent(firstName,lastName,mail,currentAccount)
     const student = await studentToCreate.wait();
