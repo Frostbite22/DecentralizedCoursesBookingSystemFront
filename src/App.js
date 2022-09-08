@@ -6,6 +6,8 @@ import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 
 
+
+
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
@@ -109,12 +111,11 @@ function App() {
       setIsLoggedIn(false);
       console.log(error);
     }
-
   }
 
   useEffect(() => {
     currentAccount!=="" ?getStudentByAcc(connEthers): connectEthers();
-  },[isLoggedIn,currentAccount])
+  },[currentAccount])
 
 
   useLayoutEffect(() => {
@@ -148,7 +149,7 @@ function App() {
           </button>
         )}
           { !isLoggedIn &&(
-            <FormCreateStudentAccount currentAccount={currentAccount} connection={connEthers} studentsNumber={studentsNumber} />)
+            <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
           }
         </div>
     </div>

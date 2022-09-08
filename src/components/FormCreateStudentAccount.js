@@ -1,20 +1,24 @@
 
-function FormCreateStudentAccount({currentAccount,connection,studentsNumber}) 
+function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setIsLoggedIn}) 
 {
 
-  async function handleCreateStudent()
+  async function handleCreateStudent(event)
   {
 
+    event.preventDefault();
     let firstName = event.target.elements.firstName.value ;
     let lastName = event.target.elements.lastName.value ;
     let mail = event.target.elements.email.value ;
 
+    console.log(mail)
+
     let studentContract = connection ;
     const studentToCreate = await studentContract.createStudent(firstName,lastName,mail,currentAccount)
     const student = await studentToCreate.wait();
-    const event = student.events.find(event => event.event === 'studentCreated');
-    const [id, first,last,account,email] = event.args;
+    const eventStd = student.events.find(event => event.event === 'studentCreated');
+    const [id, first,last,account,email] = eventStd.args;
     studentsNumber(connection);
+    setIsLoggedIn(true);
     console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
   }
   return(
@@ -29,7 +33,7 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber})
           <input type="text" id="email" />
         </label>
 
-        <input type="submit" value="Submit" className='btn'/>
+        <input type="submit" value="create student account" className='btn'/>
       </form>
     )
 }
