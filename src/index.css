@@ -59,3 +59,22 @@ input[type=submit] {
   font-size: 16px;
 
 }
+
+.profile  
+{
+ 
+  background-image: url("inside.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: inline-block;
+  justify-content: space-around;
+  margin-left: 30px; 
+  margin-top: 30px ;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.profile:hover { transform: scale(1.1); }
