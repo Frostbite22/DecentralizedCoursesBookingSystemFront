@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import './App.css';
 import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
+import NavBar from "./components/NavBar";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 
@@ -156,6 +157,7 @@ function App() {
               {
                 isLoggedIn && (
                   <div>
+                    <NavBar />
                     <p>students number : {totalStudentsNumber}</p>
                     <div className="profile">
                       <p>Hello {firstName} {lastName} </p>
