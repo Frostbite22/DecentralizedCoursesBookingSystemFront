@@ -138,15 +138,15 @@ function App() {
       <div>
       <p>
           students number : {totalStudentsNumber}
-        </p>
-        {!currentAccount && (
-          <button className ="btn" onClick={connectWallet}>
-            connect Wallet
-          </button>
-        )}
-          { !isLoggedIn &&(
-            <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
-          }
+      </p>
+      { !isLoggedIn &&(
+        <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
+      }
+      {!currentAccount && (
+      <button className ="btn" onClick={connectWallet}>
+        connect Wallet
+      </button>
+      )}
         </div>
     </div>
   );

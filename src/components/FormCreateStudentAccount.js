@@ -15,8 +15,8 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setI
     const student = await studentToCreate.wait();
     const eventStd = student.events.find(event => event.event === 'studentCreated');
     const [id, first,last,account,email] = eventStd.args;
-    studentsNumber(connection);
     setIsLoggedIn(true);
+    studentsNumber(connection);
     console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
   }
   return(
