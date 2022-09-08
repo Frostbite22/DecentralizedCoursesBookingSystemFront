@@ -157,7 +157,7 @@ function App() {
               {
                 isLoggedIn && (
                   <div>
-                    <NavBar />
+                    <NavBar firstName={firstName}/>
                     <p>students number : {totalStudentsNumber}</p>
                     <div className="profile">
                       <p>Hello {firstName} {lastName} </p>

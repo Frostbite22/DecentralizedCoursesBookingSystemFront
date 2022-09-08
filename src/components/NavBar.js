@@ -9,8 +9,13 @@ function NavBar(props)
 
   return(
     <div className="topnav">
-      <a key="paths">paths</a>
-      <a key="learning">my learning</a>
+        <div className='left'>
+            <a key="paths">paths</a>
+            <a key="learning">my learning</a>
+        </div>
+        <div className='right'>
+            <a key={props.firstName} style={{float :"right;"}}>{props.firstName} profile</a>
+        </div>
     </div>
     
   );
