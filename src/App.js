@@ -4,6 +4,10 @@ import { ethers } from "ethers";
 import './App.css';
 import studentFactory from './utils/StudentFactory.json'
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
+import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
+
+
+
 
 function App() {
 
@@ -141,30 +145,39 @@ function App() {
 
 
     return (
-    <div className="App">
-      <div>
-      { !isLoggedIn &&(
-        <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
-      }
-      {
-        isLoggedIn && (
-          <div>
-            <p>students number : {totalStudentsNumber}</p>
-            <div className="profile">
-              <p>Hello {firstName} {lastName} </p>
-              <p>{email}</p>
-              <p>{currentAccount}</p>
-            </div>
-          </div>
-        )
-      }
-      {!currentAccount && (
-      <button className ="btn" onClick={connectWallet}>
-        connect Wallet
-      </button>
-      )}
-        </div>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <div className="App">
+              <div>
+              { !isLoggedIn &&(
+                <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
+              }
+              {
+                isLoggedIn && (
+                  <div>
+                    <p>students number : {totalStudentsNumber}</p>
+                    <div className="profile">
+                      <p>Hello {firstName} {lastName} </p>
+                      <p>{email}</p>
+                      <p>{currentAccount}</p>
+                    </div>
+                  </div>
+                )
+              }
+              {!currentAccount && (
+              <button className ="btn" onClick={connectWallet}>
+                connect Wallet
+              </button>
+              )}
+              </div>
+            </div>     
+          }>
+          </Route>
+        
+
+        </Routes>
+      </BrowserRouter>
   );
 }
 
