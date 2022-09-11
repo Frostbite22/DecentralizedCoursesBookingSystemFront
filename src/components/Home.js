@@ -11,7 +11,7 @@ import background from '../welcome.jpg' ;
 import '../index.css';
 
 
-function Student()
+function Home()
 {   
     const [currentAccount, setCurrentAccount] = useState("");
     const [connStudent, setConnStudent] = useState();
@@ -136,4 +136,4 @@ const getStudentByAcc = async (connStudent) =>
       );
 }
 
-export default Student ; 
+export default Home ; 
