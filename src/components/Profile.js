@@ -1,4 +1,7 @@
-function Profile({firstName,lastName,email,account})
+import { useEffect, useState,useLayoutEffect } from "react";
+
+
+function Profile({account,firstName,lastName,email})
 {
     return (
     <div className="profile">
