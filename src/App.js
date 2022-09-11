@@ -12,21 +12,22 @@ import background from './welcome.jpg';
 
 
 
-
-
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
-  const [connStudent, setConnStudent] = useState();
   const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [email,setEmail] = useState("");
 
-
+  const [connStudent, setConnStudent] = useState();
   const studentContractAddress = "0xc41b42048a1D396e9d011edDCb822E04d30AFc66";
   const studentContractABI = studentFactory.abi ; 
+
+  const [connPath, setConnPath] = useState();
+  const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
+  const pathContractABI = pathFactory.abi ; 
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -56,22 +57,6 @@ function App() {
     }
   };
 
-  async function connectEthers() {
-    const { ethereum } = window;
-    if (ethereum) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const studentContract = new ethers.Contract(
-        studentContractAddress,
-        studentContractABI,
-        signer
-      );
-      setConnStudent(studentContract);
-    } else {
-      console.log("Ethereum object doesn't exist ");
-    }
-  }
-
   const connectWallet = async () => {
     try {
       const { ethereum } = window;
@@ -87,6 +72,32 @@ function App() {
       console.log("error");
     }
   };
+
+  async function connectEthers() {
+    const { ethereum } = window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const studentContract = new ethers.Contract(
+        studentContractAddress,
+        studentContractABI,
+        signer
+      );
+      const pathContract = new ethers.Contract(
+        pathContractAddress,
+        pathContractABI,
+        signer
+      );
+
+      setConnStudent(studentContract);
+      setConnPath(pathContract); 
+
+    } else {
+      console.log("Ethereum object doesn't exist ");
+    }
+  }
+
+ 
 
 
   const studentsNumber = async (conn) => {
