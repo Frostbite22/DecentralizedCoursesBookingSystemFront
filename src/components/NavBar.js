@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
+import { useNavigate} from 'react-router-dom' ; 
 
 
 function NavBar(props) 
@@ -10,7 +9,7 @@ function NavBar(props)
   return(
     <div className="topnav">
         <div className='left'>
-            <a key="paths">paths</a>
+            <a key="paths" onClick={() => {navigate("paths")}}>paths</a>
             <a key="learning">my learning</a>
         </div>
         <div className='right'>

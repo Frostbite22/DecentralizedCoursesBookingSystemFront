@@ -8,7 +8,7 @@ import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 import background from '../welcome.jpg' ; 
-import '../index.css';
+import Paths from "./Paths";
 
 
 function Home()
@@ -125,6 +125,8 @@ const getStudentByAcc = async (connStudent) =>
             <img className='background' alt="background" src={background} />} />
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
+
+          <Route path="paths" element={<Paths/>}/>
 
 
           </Route>
