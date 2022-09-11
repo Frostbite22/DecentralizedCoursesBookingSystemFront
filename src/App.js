@@ -136,6 +136,16 @@ function App() {
     }
   }
 
+  const getPath = async (conn) => {
+    try {
+      let pathContract = conn ;
+      const getPath = await pathContract.getPathById(0);
+      console.log(getPath);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     currentAccount!=="" ?getStudentByAcc(connStudent): connectEthers();
   },[currentAccount])
@@ -158,6 +168,11 @@ function App() {
   useEffect(() => {
     connStudent!==undefined ?getStd(connStudent): connectEthers();
   },[connStudent]);
+
+  useEffect(() => {
+    connPath!==undefined ?getPath(connPath): connectEthers();
+  },[connPath]);
+
 
 
     return (
