@@ -3,8 +3,10 @@ import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 import './App.css';
-import studentFactory from './utils/StudentFactory.json';
-import pathFactory from './utils/PathFactory.json' ; 
+import studentFactory from './utils/contracts/StudentFactory.json';
+import pathFactory from './utils/contracts/PathFactory.json' ; 
+import checkIfWalletIsConnected from "./utils/functions/checkWallet";
+import connectWallet from "./utils/functions/checkWallet";
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
@@ -29,51 +31,8 @@ function App() {
   const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
   const pathContractABI = pathFactory.abi ; 
 
-  const checkIfWalletIsConnected = async () => {
-    try {
-      const { ethereum } = window;
 
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
-
-      /*
-       * Check if we're authorized to access the user's wallet
-       */
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-        console.log("Found an authorized account:", account);
-        setCurrentAccount(account);
-      } else {
-        console.log("No authorized account found");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const connectWallet = async () => {
-    try {
-      const { ethereum } = window;
-      if (!ethereum) {
-        alert("Get Metamask");
-        return;
-      }
-
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      console.log("Connected", [0]);
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log("error");
-    }
-  };
-
-  async function connectEthers() {
+  function connectEthers() {
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
@@ -152,7 +111,7 @@ function App() {
 
 
   useLayoutEffect(() => {
-    checkIfWalletIsConnected();
+    checkIfWalletIsConnected(setCurrentAccount);
 }, []);
 
 
@@ -161,17 +120,17 @@ function App() {
   },[]);
 
 
-  useEffect(() => {
-    connStudent!==undefined ?studentsNumber(connStudent): connectEthers();
-  },[connStudent,totalStudentsNumber]);
+  // useEffect(() => {
+  //   connStudent!==undefined ?studentsNumber(connStudent): connectEthers();
+  // },[connStudent,totalStudentsNumber]);
 
-  useEffect(() => {
-    connStudent!==undefined ?getStd(connStudent): connectEthers();
-  },[connStudent]);
+  // useEffect(() => {
+  //   connStudent!==undefined ?getStd(connStudent): connectEthers();
+  // },[connStudent]);
 
-  useEffect(() => {
-    connPath!==undefined ?getPath(connPath): connectEthers();
-  },[connPath]);
+  // useEffect(() => {
+  //   connPath!==undefined ?getPath(connPath): connectEthers();
+  // },[connPath]);
 
 
 
@@ -193,7 +152,7 @@ function App() {
                 )
               }
               {!currentAccount && (
-              <button className ="btn" onClick={connectWallet}>
+              <button className ="btn" >
                 connect Wallet
               </button>
               )}
@@ -204,6 +163,10 @@ function App() {
             <img className='background' alt="background" src={background} />} />
             <Route path="profile" element={
             <Profile firstName={firstName} lastName={lastName} email={email} account={currentAccount}/>}/>
+
+            <Route path="paths" element={
+            <Profile firstName={firstName} lastName={lastName} email={email} account={currentAccount}/>}/>
+
           </Route>
         
 
