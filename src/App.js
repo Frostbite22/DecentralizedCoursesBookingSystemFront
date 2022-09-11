@@ -17,7 +17,7 @@ import background from './welcome.jpg';
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState("");
-  const [connEthers, setConnEthers] = useState();
+  const [connStudent, setConnStudent] = useState();
   const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
   const [isLoggedIn,setIsLoggedIn] = useState(false);
   const [firstName,setFirstName] = useState("");
@@ -56,7 +56,7 @@ function App() {
     }
   };
 
-  function connectEthers() {
+  async function connectEthers() {
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
@@ -66,7 +66,7 @@ function App() {
         studentContractABI,
         signer
       );
-      setConnEthers(studentContract);
+      setConnStudent(studentContract);
     } else {
       console.log("Ethereum object doesn't exist ");
     }
@@ -126,7 +126,7 @@ function App() {
   }
 
   useEffect(() => {
-    currentAccount!=="" ?getStudentByAcc(connEthers): connectEthers();
+    currentAccount!=="" ?getStudentByAcc(connStudent): connectEthers();
   },[currentAccount])
 
 
@@ -141,12 +141,12 @@ function App() {
 
 
   useEffect(() => {
-    connEthers!==undefined ?studentsNumber(connEthers): connectEthers();
-  },[connEthers,totalStudentsNumber]);
+    connStudent!==undefined ?studentsNumber(connStudent): connectEthers();
+  },[connStudent,totalStudentsNumber]);
 
   useEffect(() => {
-    connEthers!==undefined ?getStd(connEthers): connectEthers();
-  },[connEthers]);
+    connStudent!==undefined ?getStd(connStudent): connectEthers();
+  },[connStudent]);
 
 
     return (
@@ -156,7 +156,7 @@ function App() {
             <div className="App">
               <div>
               { !isLoggedIn &&(
-                <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connEthers} studentsNumber={studentsNumber} />)
+                <FormCreateStudentAccount currentAccount={currentAccount} setIsLoggedIn={setIsLoggedIn} connection={connStudent} studentsNumber={studentsNumber} />)
               }
               {
                 isLoggedIn && (
