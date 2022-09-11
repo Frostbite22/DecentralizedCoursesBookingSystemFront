@@ -3,7 +3,8 @@ import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 import './App.css';
-import studentFactory from './utils/StudentFactory.json'
+import studentFactory from './utils/StudentFactory.json';
+import pathFactory from './utils/PathFactory.json' ; 
 import FormCreateStudentAccount from "./components/FormCreateStudentAccount";
 import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
