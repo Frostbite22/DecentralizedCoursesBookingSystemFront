@@ -1,5 +1,3 @@
-import { useEffect, useState,useLayoutEffect } from "react";
-
 
 function Profile({account,firstName,lastName,email})
 {
