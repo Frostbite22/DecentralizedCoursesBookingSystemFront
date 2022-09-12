@@ -8,7 +8,7 @@ function Paths()
     const [connPath, setConnPath] = useState();
     const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
     const pathContractABI = pathFactory.abi ; 
-    const [path, setPath] = useState();
+    const [paths, setPaths] = useState([]);
     const [pathsLength,setPathsLength] = useState(0); 
   
     function connectPath() {
@@ -36,22 +36,30 @@ function Paths()
         let pathContract = conn ;
         const currentLength = await pathContract.getCurrentId();
         setPathsLength(currentLength);
-        console.log(currentLength);
       } catch (error) {
         console.log(error);
       }
     };
 
-    const getPath = async (conn) => {
+    const getPath = async (conn,index) => {
       try {
         let pathContract = conn ;
-        const getPath = await pathContract.getPathById(0);
-        setPath(getPath);
-        console.log(getPath);
+        const getPath = await pathContract.getPathById(index);
+        return getPath ;
       } catch (error) {
         console.log(error);
       }
     };
+
+    const allPaths = async (conn) => {
+      for(let i=0 ; i <pathsLength ; i++)
+      {
+        const [id,name,description,imgUrl] = await getPath(conn,i) ;
+        let path = [] ;
+        path.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl});
+        setPaths(paths => [...paths,path] );
+      }
+    }
   
   
     useEffect(() => {
@@ -61,8 +69,8 @@ function Paths()
   
   
     useEffect(() => {
-      connPath!==undefined ?getPath(connPath): connectPath();
-    },[connPath]);
+      connPath!==undefined ?allPaths(connPath): connectPath();
+    },[connPath,pathsLength]);
 
     useEffect(() => {
       connPath!==undefined ?getPathsLength(connPath): connectPath();
@@ -70,7 +78,15 @@ function Paths()
   
     return (
         <div>
-            {path} - {pathsLength}
+            {paths.map((pathContainer) => {
+              return(
+                pathContainer.map((path,index) => {
+                  return(
+                    <div key={path['id']}> {path['name']} - {path['description']} </div>
+                  )
+                })
+              )
+            })}
         </div>
     )
 }
