@@ -9,6 +9,7 @@ function Paths()
     const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
     const pathContractABI = pathFactory.abi ; 
     const [path, setPath] = useState();
+    const [pathsLength,setPathsLength] = useState(0); 
   
     function connectPath() {
       const { ethereum } = window;
@@ -30,6 +31,17 @@ function Paths()
   
   
   
+    const getPathsLength = async (conn) => {
+      try {
+        let pathContract = conn ;
+        const currentLength = await pathContract.getCurrentId();
+        setPathsLength(currentLength);
+        console.log(currentLength);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const getPath = async (conn) => {
       try {
         let pathContract = conn ;
@@ -51,10 +63,14 @@ function Paths()
     useEffect(() => {
       connPath!==undefined ?getPath(connPath): connectPath();
     },[connPath]);
+
+    useEffect(() => {
+      connPath!==undefined ?getPathsLength(connPath): connectPath();
+    },[pathsLength,connPath]);
   
     return (
         <div>
-            {path}
+            {path} - {pathsLength}
         </div>
     )
 }
