@@ -109,7 +109,7 @@ input[type=submit] {
 .profile  
 {
  
-  background-image: url("inside.png");
+  background-image: url("grad.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -128,7 +128,7 @@ input[type=submit] {
 .path  
 {
  
-  background-image: url("inside.png");
+  background-image: url("neon.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -150,8 +150,12 @@ input[type=submit] {
 .pathInsideDiv 
 {
   justify-content: center;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding-top: 60px;
+  padding-bottom: 60px;
   margin-bottom: 10px; 
   margin-top: 10px ;
+  color: #010b0c;
+  font-family: Consolas, monaco, monospace;
+  font-size: 20px;
+
 }
