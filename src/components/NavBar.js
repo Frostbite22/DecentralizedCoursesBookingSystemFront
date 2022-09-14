@@ -14,6 +14,8 @@ function NavBar(props)
         </div>
         <div className='right'>
             <a key={props.firstName} onClick={() => {navigate("profile")}}>{props.firstName} profile</a>
+            <a key="logout" onClick={() => {props.logout()}}>logout</a>
+
         </div>
     </div>
     

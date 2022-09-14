@@ -48,6 +48,12 @@ const [firstName,setFirstName] = useState("");
 const [lastName,setLastName] = useState("");
 const [email,setEmail] = useState("");
 
+function logout()
+{
+  setCurrentAccount("");
+  setConnStudent();
+  setIsLoggedIn(false);
+}
 
 const getStudentByAcc = async (connStudent) => 
   {
@@ -108,7 +114,7 @@ const getStudentByAcc = async (connStudent) =>
               {
                 isLoggedIn && (
                   <div>
-                    <NavBar firstName={firstName}/>
+                    <NavBar firstName={firstName} logout={logout}/>
                     <Outlet/>
                   </div>
                 )
