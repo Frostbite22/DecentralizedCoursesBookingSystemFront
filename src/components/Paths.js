@@ -77,12 +77,12 @@ function Paths()
     },[pathsLength,connPath]);
   
     return (
-        <div>
+        <div className="path">
             {paths.map((pathContainer) => {
               return(
                 pathContainer.map((path,index) => {
                   return(
-                    <div key={path['id']}> {path['name']} - {path['description']} </div>
+                    <div key={path['id']} className="pathInsideDiv"> {path['name']} - {path['description']} </div>
                   )
                 })
               )
