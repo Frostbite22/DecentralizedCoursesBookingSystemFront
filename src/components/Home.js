@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 import background from '../welcome.jpg' ; 
 import Paths from "./Paths";
+import Levels from "./Levels";
 
 
 function Home()
@@ -133,6 +134,7 @@ const getStudentByAcc = async (connStudent) =>
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
 
           <Route path="paths" element={<Paths/>}/>
+          <Route path="levels" element={<Levels/>}/>
 
 
           </Route>
