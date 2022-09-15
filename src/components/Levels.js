@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
+import { useParams } from "react-router-dom";
 
 
 function Levels()
@@ -10,6 +11,7 @@ function Levels()
     const levelContractABI = levelFactory.abi ; 
     const [levels, setLevels] = useState([]);
     const [levelsLength,setlevelsLength] = useState(0); 
+    const [pathLevels, setPathLevels] = useState([]);
   
     function connectLevel() {
       const { ethereum } = window;
@@ -60,8 +62,25 @@ function Levels()
         setLevels(levels => [...levels,level] );
       }
     }
-  
-  
+
+    let params = useParams();
+
+    function getLevelsByPathId(params)
+    {
+      let pathLvls = []; 
+      let pathId = params.pathId ; 
+      levels.map((levelC) => {
+        levelC.map( (level) => {
+          if(level.id_path == pathId)
+          {
+            pathLvls.push(level);
+          }
+        })
+      })
+
+      setPathLevels(pathLvls); 
+    }
+
     useEffect(() => {
       connectLevel();
     },[]);
@@ -73,18 +92,18 @@ function Levels()
     },[connLevel,levelsLength]);
 
     useEffect(() => {
+      getLevelsByPathId(params);
+    },[levels]);
+
+    useEffect(() => {
       connLevel!==undefined ?getlevelsLength(connLevel): connectLevel();
     },[levelsLength,connLevel]);
   
     return (
         <div className="path">
-            {levels.map((levelContainer) => {
+            {pathLevels.map((level) => {
               return(
-                levelContainer.map((level,index) => {
-                  return(
-                    <div key={level['id']} className="pathInsideDiv"> {level['name']} - {level['description']} </div>
-                  )
-                })
+                <div key={level['id']} className="pathInsideDiv"> {level['name']} - {level['description']} </div>
               )
             })}
         </div>

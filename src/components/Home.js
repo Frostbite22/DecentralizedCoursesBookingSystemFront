@@ -133,8 +133,9 @@ const getStudentByAcc = async (connStudent) =>
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
 
-          <Route path="paths" element={<Paths/>}/>
-          <Route path="levels" element={<Levels/>}/>
+          <Route path="paths" element={<Paths/>} />
+          <Route path="paths/:pathId/levels" element={<Levels/>}/>
+
 
 
           </Route>

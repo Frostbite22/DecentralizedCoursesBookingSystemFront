@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import pathFactory from '../utils/contracts/PathFactory.json' ; 
+import { useNavigate } from "react-router-dom";
 
 
 function Paths()
@@ -60,7 +61,9 @@ function Paths()
         setPaths(paths => [...paths,path] );
       }
     }
-  
+
+    let navigate = useNavigate() ;
+   
   
     useEffect(() => {
       connectPath();
@@ -82,7 +85,7 @@ function Paths()
               return(
                 pathContainer.map((path,index) => {
                   return(
-                    <div key={path['id']} className="pathInsideDiv"> {path['name']} - {path['description']} </div>
+                    <div key={path['id']} className="pathInsideDiv" onClick={() => {navigate(`${path['id']}/levels`)}}> {path['name']} - {path['description']} </div>
                   )
                 })
               )
