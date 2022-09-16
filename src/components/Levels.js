@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Levels()
@@ -62,6 +63,7 @@ function Levels()
         setLevels(levels => [...levels,level] );
       }
     }
+    let navigate = useNavigate() ;
 
     let params = useParams();
 
@@ -103,7 +105,7 @@ function Levels()
         <div className="path">
             {pathLevels.map((level) => {
               return(
-                <div key={level['id']} className="pathInsideDiv"> {level['name']} - {level['description']} </div>
+                <div key={level['id']} className="pathInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}> {level['name']} - {level['description']} </div>
               )
             })}
         </div>

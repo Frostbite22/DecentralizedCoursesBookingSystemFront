@@ -10,6 +10,7 @@ import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} f
 import background from '../welcome.jpg' ; 
 import Paths from "./Paths";
 import Levels from "./Levels";
+import Sessions from "./Sessions";
 
 
 function Home()
@@ -135,6 +136,8 @@ const getStudentByAcc = async (connStudent) =>
 
           <Route path="paths" element={<Paths/>} />
           <Route path="paths/:pathId/levels" element={<Levels/>}/>
+          <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
+
 
 
 
