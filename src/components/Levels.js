@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
+import studentLevelFactory from '../utils/contracts/StudentFactory.json' ; 
+
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
 function Levels()
 {
+    const [connStudentLevel, setConnStudentLevel] = useState();
+    const studentLevelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
+    const studentLevelContractABI = studentLevelFactory.abi ; 
+
     const [connLevel, setConnlevel] = useState();
-    //const levelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
     const levelContractAddress = "0x6883dA174e6F4232e9Ffe2d514c1922B650d5670" ; 
     const levelContractABI = levelFactory.abi ; 
     const [levels, setLevels] = useState([]);
@@ -32,6 +37,25 @@ function Levels()
         console.log("Ethereum object doesn't exist ");
       }
     }
+
+    function connectStudentLevel() {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const studentLevelContract = new ethers.Contract(
+          studentLevelContractAddress,
+          studentLevelContractABI,
+          signer
+        );
+  
+        setConnStudentlevel(studentLevelContract); 
+  
+      } else {
+        console.log("Ethereum object doesn't exist ");
+      }
+    }
+
   
   
   
@@ -86,6 +110,10 @@ function Levels()
 
     useEffect(() => {
       connectLevel();
+    },[]);
+
+    useEffect(() => {
+      connectStudentLevel();
     },[]);
   
   
