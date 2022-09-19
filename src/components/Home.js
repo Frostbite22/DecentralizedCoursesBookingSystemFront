@@ -24,7 +24,7 @@ function Home()
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 
     const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
-    const [levels, setLevels] = useState([]);
+    const [levelsHome, setLevelsHome] = useState([]);
 
 
 
@@ -141,8 +141,8 @@ const getStudentByAcc = async (connStudent) =>
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
 
           <Route path="paths" element={<Paths/>} />
-          <Route path="learnings" element={<MyLearning std_id={id} levels={levels}/>} />
-          <Route path="paths/:pathId/levels" element={<Levels std_id={id} levels={levels} setLevels={setLevels}/>}/>
+          <Route path="learnings" element={<MyLearning std_id={id} levels={levelsHome}/>} />
+          <Route path="paths/:pathId/levels" element={<Levels std_id={id} setLevelsHome={setLevelsHome}/>}/>
           <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
 
 

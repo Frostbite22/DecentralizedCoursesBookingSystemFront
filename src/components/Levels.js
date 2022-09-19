@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-function Levels({std_id,levels,setLevels})
+function Levels({std_id,setLevelsHome})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
@@ -19,6 +19,8 @@ function Levels({std_id,levels,setLevels})
 
     const [levelsLength,setlevelsLength] = useState(0); 
     const [pathLevels, setPathLevels] = useState([]);
+    const [levels, setLevels] = useState([]);
+
   
     function connectLevel() {
       const { ethereum } = window;
@@ -108,6 +110,8 @@ function Levels({std_id,levels,setLevels})
       setPathLevels(pathLvls); 
     }
 
+    
+
 
     const createStudentLevel = async (conn,levelId) => {
       try {
@@ -131,7 +135,9 @@ function Levels({std_id,levels,setLevels})
       connectStudentLevel();
     },[]);
   
-  
+    useEffect(() => {
+      levels == [] ? allLevels(connLevel) : setLevelsHome(levels)
+    },[levels])
   
     useEffect(() => {
       connLevel!==undefined ?allLevels(connLevel): connectLevel();
