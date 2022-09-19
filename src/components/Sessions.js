@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 function Sessions()
 {
     const [connSession, setConnSession] = useState();
-    const sessionContractAddress = "0x55792a70a58be33077eaB599344390d8c2d47916" ; 
+    //const sessionContractAddress = "0x55792a70a58be33077eaB599344390d8c2d47916" ; 
+    const sessionContractAddress = "0x5EE3aCb8e46c170ddF1e58eE1475448cDBDA582a" ; 
+
     const sessionContractABI = sessionFactory.abi ; 
     const [sessions, setSessions] = useState([]);
     const [sessionsLength,setSessionsLength] = useState(0); 
@@ -56,9 +58,12 @@ function Sessions()
     const allSessions = async (conn) => {
       for(let i=0 ; i <sessionsLength ; i++)
       {
-        const [id,date,levelId] = await getSession(conn,i) ;
+        const [id,name,date,levelId] = await getSession(conn,i) ;
         let session = [] ;
-        session.push({"id": id, "date" : date,"levelId": levelId});
+        const response_date = new Date(date*1000);
+        console.log(response_date)
+
+        session.push({"id": id,"name": name, "date" : response_date,"levelId": levelId});
         setSessions(sessions => [...sessions,session] );
       }
     }
@@ -68,16 +73,16 @@ function Sessions()
     function getSessionsByLevelId(params)
     {
       let lvlSessions = []; 
-      let levelId = params.leveId ; 
+      let levelId = params.levelId ; 
       sessions.map((sessionC) => {
         sessionC.map( (session) => {
-          if(session.levelId == levelId)
+          if(session.id == levelId)
           {
+            console.log(session)
             lvlSessions.push(session);
           }
         })
       })
-
       setLevelSessions(lvlSessions); 
     }
 
@@ -103,7 +108,7 @@ function Sessions()
         <div className="path">
             {levelSessions.map((session) => {
               return(
-                <div key={session['id']} className="pathInsideDiv"> {session['id']} - {session['date']} </div>
+                <div key={session['id']} className="pathInsideDiv"> {session['name']} - {session['date']} </div>
               )
             })}
         </div>

@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 function Levels()
 {
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
+    //const levelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
+    const levelContractAddress = "0x0349b9032058bd51e259a20bEE55da094320d039" ; 
     const levelContractABI = levelFactory.abi ; 
     const [levels, setLevels] = useState([]);
     const [levelsLength,setlevelsLength] = useState(0); 
@@ -57,9 +58,9 @@ function Levels()
     const allLevels = async (conn) => {
       for(let i=0 ; i <levelsLength ; i++)
       {
-        const [id,name,description,imgUrl,id_path] = await getLevel(conn,i) ;
+        const [id,name,description,imgUrl,placesLeft,id_path] = await getLevel(conn,i) ;
         let level = [] ;
-        level.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl,"id_path": id_path});
+        level.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl,"placesLeft" :placesLeft,"id_path": id_path});
         setLevels(levels => [...levels,level] );
       }
     }
@@ -105,7 +106,10 @@ function Levels()
         <div className="path">
             {pathLevels.map((level) => {
               return(
-                <div key={level['id']} className="pathInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}> {level['name']} - {level['description']} </div>
+                <div key={level['id']} className="pathInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
+                  <div> {level['name']} - {level['description']}</div> 
+                  <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
+                </div>
               )
             })}
         </div>
