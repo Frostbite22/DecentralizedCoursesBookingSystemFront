@@ -106,9 +106,10 @@ function Levels()
         <div className="path">
             {pathLevels.map((level) => {
               return(
-                <div key={level['id']} className="pathInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
+                <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
+                  <button className="btn">purchase</button>
                 </div>
               )
             })}
