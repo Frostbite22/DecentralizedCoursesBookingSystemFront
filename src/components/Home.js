@@ -50,6 +50,7 @@ function Home()
 const [firstName,setFirstName] = useState("");
 const [lastName,setLastName] = useState("");
 const [email,setEmail] = useState("");
+const [id,setId] = useState("");
 
 function logout()
 {
@@ -62,10 +63,11 @@ const getStudentByAcc = async (connStudent) =>
   {
     try {
       let studentContract = connStudent ;
-      const [id_,first,last,acc,mail]= await studentContract.getStudentByAccount(currentAccount);
+      const [id,first,last,acc,mail]= await studentContract.getStudentByAccount(currentAccount);
       setFirstName(first);
       setLastName(last);
       setEmail(mail);
+      setId(id);
       setIsLoggedIn(true);
 
     } catch (error) {
@@ -136,7 +138,7 @@ const getStudentByAcc = async (connStudent) =>
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
 
           <Route path="paths" element={<Paths/>} />
-          <Route path="paths/:pathId/levels" element={<Levels/>}/>
+          <Route path="paths/:pathId/levels" element={<Levels std_id={id}/>}/>
           <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
 
 

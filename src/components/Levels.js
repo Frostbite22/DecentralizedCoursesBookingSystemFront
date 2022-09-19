@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-function Levels()
+function Levels({std_id})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
@@ -16,6 +16,7 @@ function Levels()
     const [connLevel, setConnlevel] = useState();
     const levelContractAddress = "0x6883dA174e6F4232e9Ffe2d514c1922B650d5670" ; 
     const levelContractABI = levelFactory.abi ; 
+
     const [levels, setLevels] = useState([]);
     const [levelsLength,setlevelsLength] = useState(0); 
     const [pathLevels, setPathLevels] = useState([]);
@@ -49,7 +50,7 @@ function Levels()
           signer
         );
   
-        setConnStudentlevel(studentLevelContract); 
+        setConnStudentLevel(studentLevelContract); 
   
       } else {
         console.log("Ethereum object doesn't exist ");
@@ -108,6 +109,21 @@ function Levels()
       setPathLevels(pathLvls); 
     }
 
+
+    const createStudentLevel = async (conn,levelId) => {
+      try {
+        let studentLevelContract = conn ;
+        const stdToLevelTnx = await studentLevelContract.createStudentLevel(std_id,levelId,levelContractAddress);
+        stdToLevelTnx.wait(); 
+        const eventStdToLvl = stdToLevelTnx.events.find(event => event.event ==='studentLevelCreated');
+        const [id,studentId,levelId] = eventStdToLvl.args ;
+        console.log("student added to level "); 
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     useEffect(() => {
       connectLevel();
     },[]);
@@ -137,7 +153,7 @@ function Levels()
                 <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
-                  <button className="btn">purchase</button>
+                  <button className="btn" onClick={createStudentLevel(level['id'])}>purchase</button>
                 </div>
               )
             })}
