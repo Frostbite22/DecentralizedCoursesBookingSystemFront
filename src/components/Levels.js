@@ -9,7 +9,7 @@ function Levels()
 {
     const [connLevel, setConnlevel] = useState();
     //const levelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
-    const levelContractAddress = "0x0349b9032058bd51e259a20bEE55da094320d039" ; 
+    const levelContractAddress = "0x6883dA174e6F4232e9Ffe2d514c1922B650d5670" ; 
     const levelContractABI = levelFactory.abi ; 
     const [levels, setLevels] = useState([]);
     const [levelsLength,setlevelsLength] = useState(0); 

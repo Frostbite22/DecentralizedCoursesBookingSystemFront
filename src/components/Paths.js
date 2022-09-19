@@ -8,7 +8,7 @@ function Paths()
 {
     const [connPath, setConnPath] = useState();
     //const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
-    const pathContractAddress = "0x169A4F2605399489DAeFB52E310fAc4F5A0CAe95" ; 
+    const pathContractAddress = "0x23ffAC6278FA1C5600D64Ce9beC0F2dE012B42a0" ; 
 
     const pathContractABI = pathFactory.abi ; 
     const [paths, setPaths] = useState([]);
