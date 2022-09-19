@@ -11,6 +11,7 @@ import background from '../welcome.jpg' ;
 import Paths from "./Paths";
 import Levels from "./Levels";
 import Sessions from "./Sessions";
+import MyLearning from "./MyLearning";
 
 
 function Home()
@@ -23,6 +24,8 @@ function Home()
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 
     const [totalStudentsNumber,setTotalStudentsNumber] = useState(0);
+    const [levels, setLevels] = useState([]);
+
 
 
 
@@ -138,7 +141,8 @@ const getStudentByAcc = async (connStudent) =>
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
 
           <Route path="paths" element={<Paths/>} />
-          <Route path="paths/:pathId/levels" element={<Levels std_id={id}/>}/>
+          <Route path="learnings" element={<MyLearning std_id={id} levels={levels}/>} />
+          <Route path="paths/:pathId/levels" element={<Levels std_id={id} levels={levels} setLevels={setLevels}/>}/>
           <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
 
 

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-function Levels({std_id})
+function Levels({std_id,levels,setLevels})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
@@ -17,7 +17,6 @@ function Levels({std_id})
     const levelContractAddress = "0x6883dA174e6F4232e9Ffe2d514c1922B650d5670" ; 
     const levelContractABI = levelFactory.abi ; 
 
-    const [levels, setLevels] = useState([]);
     const [levelsLength,setlevelsLength] = useState(0); 
     const [pathLevels, setPathLevels] = useState([]);
   
@@ -153,7 +152,7 @@ function Levels({std_id})
                 <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
-                  <button className="btn" onClick={createStudentLevel(level['id'])}>purchase</button>
+                  <button className="btn" onClick={() => createStudentLevel(level['id'])}>book now</button>
                 </div>
               )
             })}
