@@ -10,7 +10,7 @@ function NavBar(props)
     <div className="topnav">
         <div className='left'>
             <a key="paths" onClick={() => {navigate("paths")}}>paths</a>
-            <a key="learning">my learning</a>
+            <a key="learning" onClick={() => {navigate("learning")}}>my learning</a>
         </div>
         <div className='right'>
             <a key={props.firstName} onClick={() => {navigate("profile")}}>{props.firstName} profile</a>

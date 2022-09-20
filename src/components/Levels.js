@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
-import studentLevelFactory from '../utils/contracts/StudentFactory.json' ; 
+import studentLevelFactory from '../utils/contracts/StudentLevelFactory.json' ; 
 
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 function Levels({std_id,setLevelsHome})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0xe55e33D0030c0aE4999b16F2E4cf92533930F18a" ; 
+    const studentLevelContractAddress = "0x4c895A941F39b5BF9B300D305c8D3482152C368B" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
 
     const [connLevel, setConnlevel] = useState();
@@ -58,9 +58,9 @@ function Levels({std_id,setLevelsHome})
       }
     }
 
-  
-  
-  
+    
+
+
     const getlevelsLength = async (conn) => {
       try {
         let levelContract = conn ;
@@ -113,12 +113,14 @@ function Levels({std_id,setLevelsHome})
     
 
 
-    const createStudentLevel = async (conn,levelId) => {
+    const createStdLvl = async (conn,level_id) => {
       try {
+
         let studentLevelContract = conn ;
-        const stdToLevelTnx = await studentLevelContract.createStudentLevel(std_id,levelId,levelContractAddress);
-        stdToLevelTnx.wait(); 
-        const eventStdToLvl = stdToLevelTnx.events.find(event => event.event ==='studentLevelCreated');
+        console.log(conn)
+        const stdToLevelTnx = await studentLevelContract.createStudentLevel(std_id,level_id,levelContractAddress);
+        const stdToLvl = await stdToLevelTnx.wait(); 
+        const eventStdToLvl = stdToLvl.events.find(event => event.event ==='studentLevelCreated');
         const [id,studentId,levelId] = eventStdToLvl.args ;
         console.log("student added to level "); 
 
@@ -134,10 +136,7 @@ function Levels({std_id,setLevelsHome})
     useEffect(() => {
       connectStudentLevel();
     },[]);
-  
-    useEffect(() => {
-      levels == [] ? allLevels(connLevel) : setLevelsHome(levels)
-    },[levels])
+
   
     useEffect(() => {
       connLevel!==undefined ?allLevels(connLevel): connectLevel();
@@ -158,7 +157,7 @@ function Levels({std_id,setLevelsHome})
                 <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
-                  <button className="btn" onClick={() => createStudentLevel(level['id'])}>book now</button>
+                  <button className="btn" onClick={() => createStdLvl(connStudentLevel,level['id'])}>book now</button>
                 </div>
               )
             })}
