@@ -10,13 +10,13 @@ import { useNavigate } from "react-router-dom";
 function MyLearning({std_id})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0x4c895A941F39b5BF9B300D305c8D3482152C368B" ; 
+    const studentLevelContractAddress = "0x6A64106cdFeA023E3c945a42d2950d2677b8d5AE" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
     const [stdLevelsIds,setStdLevelsIds] = useState([]) ; 
     const [studentLevels,setStudentLevels] = useState([]);
 
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0x6883dA174e6F4232e9Ffe2d514c1922B650d5670" ; 
+    const levelContractAddress = "0xcbc170aE499AAf18ffE17F614fB694c3C9bE5b59" ; 
     const levelContractABI = levelFactory.abi ; 
 
 
@@ -114,12 +114,15 @@ function MyLearning({std_id})
   
     return (
         <div className="path">
-            {studentLevels.map((level) => {
-              return(
-                <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
-                  <div> {level['name']} - {level['description']}</div> 
-                </div>
-              )
+            {studentLevels.map((levelC) => {
+              return (
+                levelC.map((level) => {
+                  return(
+                    <div key={level['id']} className="levelInsideDiv" >
+                      <div> {level['name']} - {level['description']}</div> 
+                    </div>
+                  )
+              }))
             })}
         </div>
     )

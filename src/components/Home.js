@@ -18,8 +18,7 @@ function Home()
 {   
     const [currentAccount, setCurrentAccount] = useState("");
     const [connStudent, setConnStudent] = useState();
-    //const studentContractAddress = "0xc41b42048a1D396e9d011edDCb822E04d30AFc66";
-    const studentContractAddress = "0xcb477Fa42ba6c9F807d32BEE2aF0923ABBEF8177"
+    const studentContractAddress = "0xe66D2a867f753C796Bd8f59a3FD05569381132Eb"
     const studentContractABI = studentFactory.abi ; 
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 

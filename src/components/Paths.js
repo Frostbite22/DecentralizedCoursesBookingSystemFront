@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Paths()
 {
     const [connPath, setConnPath] = useState();
-    //const pathContractAddress = "0x739e90e2a472A583904f11A7daF7D17916dB4F9f" ; 
-    const pathContractAddress = "0x23ffAC6278FA1C5600D64Ce9beC0F2dE012B42a0" ; 
+    const pathContractAddress = "0xC5b3236C63893D08FBcae8f346c22CA333Ba2b31" ; 
 
     const pathContractABI = pathFactory.abi ; 
     const [paths, setPaths] = useState([]);

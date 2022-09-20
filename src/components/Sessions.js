@@ -7,8 +7,7 @@ import { useParams } from "react-router-dom";
 function Sessions()
 {
     const [connSession, setConnSession] = useState();
-    //const sessionContractAddress = "0x55792a70a58be33077eaB599344390d8c2d47916" ; 
-    const sessionContractAddress = "0xdeccA32AbbBc6d247E8165713139ABA56E95e40C" ; 
+    const sessionContractAddress = "0xcdcEDfa3c2654Ec0fD04264621476E2dCE727E53" ; 
 
     const sessionContractABI = sessionFactory.abi ; 
     const [sessions, setSessions] = useState([]);
