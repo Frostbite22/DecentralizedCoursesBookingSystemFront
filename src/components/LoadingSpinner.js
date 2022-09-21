@@ -1,12 +1,12 @@
 import * as React from "react";
-import "./spinner.css";
+import "../spinner.css" ;
 
-export default function LoadingSpinner() {
+export default function LoadingSpinner({message}) {
   return (
     <center>
       <div className="spinner-container">
         <div className="loading-spinner"></div>
-        <h3>Waving in Progress, the transaction is being confirmed !</h3>
+        <h3>{message}</h3>
       </div>
     </center>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import studentLevelFactory from '../utils/contracts/StudentLevelFactory.json' ; 
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
+import LoadingSpinner from "./LoadingSpinner";
 
 function MyLearning({std_id})
 {
@@ -14,6 +15,9 @@ function MyLearning({std_id})
     const [connLevel, setConnlevel] = useState();
     const levelContractAddress = "0xcbc170aE499AAf18ffE17F614fB694c3C9bE5b59" ; 
     const levelContractABI = levelFactory.abi ; 
+
+
+    const [isLoading, setIsLoading] = useState(true);
 
     function connectStudentLevel() {
       const { ethereum } = window;
@@ -80,6 +84,7 @@ function MyLearning({std_id})
           level.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl,"placesLeft" :placesLeft,"id_path": id_path});
           setStudentLevels(studentLevels => [...studentLevels,level] );
         }
+        setIsLoading(false);
       }
   
       useEffect(() => {
@@ -103,6 +108,7 @@ function MyLearning({std_id})
   
     return (
         <div className="path">
+            { isLoading ? <LoadingSpinner message={"my learnings are loading"}/> : "" }
             {studentLevels.map((levelC) => {
               return (
                 levelC.map((level) => {

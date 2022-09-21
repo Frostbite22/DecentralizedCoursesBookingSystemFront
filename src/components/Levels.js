@@ -3,11 +3,12 @@ import { ethers } from "ethers";
 import levelFactory from '../utils/contracts/LevelFactory.json' ; 
 import studentLevelFactory from '../utils/contracts/StudentLevelFactory.json' ; 
 
+import LoadingSpinner from "./LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-function Levels({std_id,setLevelsHome})
+function Levels({std_id})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0x6A64106cdFeA023E3c945a42d2950d2677b8d5AE" ; 
@@ -20,6 +21,8 @@ function Levels({std_id,setLevelsHome})
     const [levelsLength,setlevelsLength] = useState(0); 
     const [pathLevels, setPathLevels] = useState([]);
     const [levels, setLevels] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
 
   
     function connectLevel() {
@@ -82,6 +85,7 @@ function Levels({std_id,setLevelsHome})
     };
 
     const allLevels = async (conn) => {
+      setIsLoading(true);
       for(let i=0 ; i <levelsLength ; i++)
       {
         const [id,name,description,imgUrl,placesLeft,id_path] = await getLevel(conn,i) ;
@@ -89,6 +93,7 @@ function Levels({std_id,setLevelsHome})
         level.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl,"placesLeft" :placesLeft,"id_path": id_path});
         setLevels(levels => [...levels,level] );
       }
+      setIsLoading(false); 
     }
     let navigate = useNavigate() ;
 
@@ -115,7 +120,7 @@ function Levels({std_id,setLevelsHome})
 
     const createStdLvl = async (conn,level_id) => {
       try {
-
+        setIsLoading(true);
         let studentLevelContract = conn ;
         console.log(conn)
         const stdToLevelTnx = await studentLevelContract.createStudentLevel(std_id,level_id,levelContractAddress);
@@ -123,7 +128,7 @@ function Levels({std_id,setLevelsHome})
         const eventStdToLvl = stdToLvl.events.find(event => event.event ==='studentLevelCreated');
         const [id,studentId,levelId] = eventStdToLvl.args ;
         console.log("student added to level "); 
-
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -152,6 +157,7 @@ function Levels({std_id,setLevelsHome})
   
     return (
         <div className="path">
+          { isLoading ? <LoadingSpinner message={"Please wait"}/> : "" }
             {pathLevels.map((level) => {
               return(
                 <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>

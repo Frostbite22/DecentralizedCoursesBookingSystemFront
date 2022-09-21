@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import sessionFactory from '../utils/contracts/SessionFactory.json' ; 
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 
 function Sessions()
@@ -13,7 +14,8 @@ function Sessions()
     const [sessions, setSessions] = useState([]);
     const [sessionsLength,setSessionsLength] = useState(0); 
     const [levelSessions, setLevelSessions] = useState([]);
-  
+    const [isLoading, setIsLoading] = useState(true);
+
     function connectSession() {
       const { ethereum } = window;
       if (ethereum) {
@@ -55,6 +57,7 @@ function Sessions()
     };
 
     const allSessions = async (conn) => {
+      setIsLoading(true);
       for(let i=0 ; i <sessionsLength ; i++)
       {
         const [id,name,date,levelId] = await getSession(conn,i) ;
@@ -65,6 +68,7 @@ function Sessions()
         session.push({"id": id,"name": name, "date" : response_date.toString(),"levelId": levelId});
         setSessions(sessions => [...sessions,session] );
       }
+      setIsLoading(false); 
     }
 
     let params = useParams();
@@ -105,6 +109,7 @@ function Sessions()
   
     return (
         <div className="path">
+            { isLoading ? <LoadingSpinner message={"Sessions are loading"}/> : "" }
             {levelSessions.map((session) => {
               return(
                 <div key={session['id']} className="levelInsideDiv"> {session['name']} - {session['date']} </div>

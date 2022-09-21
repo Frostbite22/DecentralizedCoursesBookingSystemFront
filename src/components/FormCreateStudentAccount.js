@@ -1,10 +1,16 @@
+import LoadingSpinner from "./LoadingSpinner";
+import { useEffect, useState,useLayoutEffect } from "react";
+
+
 
 function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setIsLoggedIn}) 
 {
+  const [isLoading, setIsLoading] = useState(false);
+
 
   async function handleCreateStudent(event)
   {
-
+    setIsLoading(true) ;
     event.preventDefault();
     let firstName = event.target.elements.firstName.value ;
     let lastName = event.target.elements.lastName.value ;
@@ -17,9 +23,12 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setI
     const [id, first,last,account,email] = eventStd.args;
     setIsLoggedIn(true);
     studentsNumber(connection);
+    setIsLoading(false);
     console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
   }
   return(
+    <> 
+   {isLoading && <LoadingSpinner message={"account is being created"} /> }
       <form  onSubmit={handleCreateStudent} className="formLayout" >
         <label htmlFor="firstName" >firstName
           <input type="text" id="firstName" />
@@ -33,6 +42,7 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setI
 
         <input type="submit" value="create student account" className='btn'/>
       </form>
+    </>
     )
 }
 

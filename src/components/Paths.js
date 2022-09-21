@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import pathFactory from '../utils/contracts/PathFactory.json' ; 
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 
 function Paths()
@@ -12,6 +13,8 @@ function Paths()
     const pathContractABI = pathFactory.abi ; 
     const [paths, setPaths] = useState([]);
     const [pathsLength,setPathsLength] = useState(0); 
+    const [isLoading, setIsLoading] = useState(true);
+
   
     function connectPath() {
       const { ethereum } = window;
@@ -54,6 +57,7 @@ function Paths()
     };
 
     const allPaths = async (conn) => {
+      setIsLoading(true);
       for(let i=0 ; i <pathsLength ; i++)
       {
         const [id,name,description,imgUrl] = await getPath(conn,i) ;
@@ -61,6 +65,7 @@ function Paths()
         path.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl});
         setPaths(paths => [...paths,path] );
       }
+      setIsLoading(false);
     }
 
     let navigate = useNavigate() ;
@@ -82,6 +87,7 @@ function Paths()
   
     return (
         <div className="path">
+            {isLoading ? <LoadingSpinner message={"path is loading"}/>: ""}
             {paths.map((pathContainer) => {
               return(
                 pathContainer.map((path,index) => {
