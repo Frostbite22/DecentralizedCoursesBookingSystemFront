@@ -59,7 +59,7 @@ function MyLearning({std_id})
         try {
           let studentLevelContract = conn ;
           const std_level_ids = await studentLevelContract.getStudentLevelsId(std_id);
-          setStdLevelsIds(std_level_ids);
+          setStdLevelsIds([...new Set(std_level_ids)]);
         } catch (error) {
           console.log(error);
         }
