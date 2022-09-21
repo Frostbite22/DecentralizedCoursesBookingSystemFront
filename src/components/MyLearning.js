@@ -17,7 +17,7 @@ function MyLearning({std_id})
     const levelContractABI = levelFactory.abi ; 
 
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     function connectStudentLevel() {
       const { ethereum } = window;
@@ -76,6 +76,7 @@ function MyLearning({std_id})
       };
   
       const allStudentLevels = async (conn) => {
+        setIsLoading(true);
         for(let i=0 ; i <stdLevelsIds.length ; i++)
         {
           console.log(stdLevelsIds[i])

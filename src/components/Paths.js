@@ -13,7 +13,7 @@ function Paths()
     const pathContractABI = pathFactory.abi ; 
     const [paths, setPaths] = useState([]);
     const [pathsLength,setPathsLength] = useState(0); 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
   
     function connectPath() {

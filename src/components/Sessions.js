@@ -14,7 +14,7 @@ function Sessions()
     const [sessions, setSessions] = useState([]);
     const [sessionsLength,setSessionsLength] = useState(0); 
     const [levelSessions, setLevelSessions] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     function connectSession() {
       const { ethereum } = window;
