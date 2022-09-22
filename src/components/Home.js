@@ -1,11 +1,5 @@
-import FormCreateStudentAccount from "./FormCreateStudentAccount";
 import Profile from "./Profile";
-import NavBar from "./NavBar";
-import checkIfWalletIsConnected from "../utils/functions/checkWallet";
-import connectWallet from "../utils/functions/checkWallet";
-import studentFactory from '../utils/contracts/StudentFactory.json';
 import { useEffect, useState,useLayoutEffect } from "react";
-import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 import background from '../welcome.jpg' ; 
 import Paths from "./Paths";
@@ -27,7 +21,7 @@ const [id,setId] = useState("");
       return (
         <BrowserRouter>
         <Routes>
-          <Route path="student" element={
+          <Route path="/" element={
             <Student setCurrentAccountLanding={setCurrentAccount} setFirstNameLanding={setFirstName} setIdLanding={setId}
             setEmailLanding={setEmail} setLastNameLanding={setLastName} />
           }>
