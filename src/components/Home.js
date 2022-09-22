@@ -12,6 +12,7 @@ import Paths from "./Paths";
 import Levels from "./Levels";
 import Sessions from "./Sessions";
 import MyLearning from "./MyLearning";
+import Admin from "./Admin";
 
 
 function Home()
@@ -137,16 +138,13 @@ const getStudentByAcc = async (connStudent) =>
             <img className='background' alt="background" src={background} />} />
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} />}/>
-
           <Route path="paths" element={<Paths/>} />
           <Route path="learning" element={<MyLearning std_id={id} />} />
           <Route path="paths/:pathId/levels" element={<Levels std_id={id} />}/>
           <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
-
-
-
-
           </Route>
+          <Route path="admin" element={<Admin />} />
+
         
 
         </Routes>
