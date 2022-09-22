@@ -1,5 +1,5 @@
 
-export default async function checkIfWalletIsConnected(setCurrentAccount)
+export default async function checkIfWalletIsConnected(setCurrentAccount,setCurrentAccountLanding)
 {
         try {
           const { ethereum } = window;
@@ -20,6 +20,7 @@ export default async function checkIfWalletIsConnected(setCurrentAccount)
             const account = accounts[0];
             console.log("Found an authorized account:", account);
             setCurrentAccount(account);
+            setCurrentAccountLanding(account);
           } else {
             console.log("No authorized account found");
           }
