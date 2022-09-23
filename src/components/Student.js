@@ -13,7 +13,7 @@ setEmailLanding,setIdLanding,setType})
 {   
     const [currentAccount, setCurrentAccount] = useState("");
     const [connStudent, setConnStudent] = useState();
-    const studentContractAddress = "0xe66D2a867f753C796Bd8f59a3FD05569381132Eb"
+    const studentContractAddress = "0xA33dB0F78fE9fFabFa423bB9290B7e8621D208B9"
     const studentContractABI = studentFactory.abi ; 
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 

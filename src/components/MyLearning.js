@@ -7,13 +7,13 @@ import LoadingSpinner from "./LoadingSpinner";
 function MyLearning({std_id})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0x6A64106cdFeA023E3c945a42d2950d2677b8d5AE" ; 
+    const studentLevelContractAddress = "0xF2803B2D7eA2078Da4D44E887dC1429437d17731" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
     const [stdLevelsIds,setStdLevelsIds] = useState([]) ; 
     const [studentLevels,setStudentLevels] = useState([]);
 
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0xcbc170aE499AAf18ffE17F614fB694c3C9bE5b59" ; 
+    const levelContractAddress = "0x2c094862CDd298BB1ECBBb31e6924639Afc0C92c" ; 
     const levelContractABI = levelFactory.abi ; 
 
 

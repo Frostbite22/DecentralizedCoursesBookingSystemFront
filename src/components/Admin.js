@@ -12,8 +12,8 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
     {   
         const [currentAccount, setCurrentAccount] = useState("");
         const [connAdmin, setconnAdmin] = useState();
-        const adminContractAddress = "0xe66D2a867f753C796Bd8f59a3FD05569381132Eb"
-        const adminContractABI = studentFactory.abi ; 
+        const adminContractAddress = "0x2684B20bBE82d130b001FEBC694958C682413e31"
+        const adminContractABI = adminFactory.abi ; 
         const [isLoggedIn,setIsLoggedIn] = useState(false);
     
         const [totalAdminsNumber,setTotalAdminsNumber] = useState(0);
@@ -62,7 +62,7 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
           setLastNameLanding(last);
           setEmailLanding(mail);
           setIdLanding(id);
-          setType("student");
+          setType("admin");
           setIsLoggedIn(true);
     
         } catch (error) {
@@ -76,7 +76,7 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
       },[currentAccount])
     
     
-        const studentsNumber = async (conn) => {
+        const adminsNumber = async (conn) => {
             try {
               let adminContract = conn ;
               let currentLength = await adminContract.getAdminsLength();
@@ -106,8 +106,13 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
           return (
                 <div className="App">
                 <div>
-                    <h1>This interface is for admins</h1>
-                    <h2>If you are using an admin account, then switch to your admin your admin wallet</h2>
+                  { !isLoggedIn && (
+                    <div>
+                      <h1>This interface is for admins</h1>
+                      <h2>If you are using an admin account, then switch to your admin your admin wallet</h2>
+                    </div>
+                    )
+                  }
                   {
                     isLoggedIn && (
                       <div>
