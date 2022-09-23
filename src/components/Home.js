@@ -32,13 +32,17 @@ const [type,setType] = useState("")
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
             <Route path="paths" element={<Paths/>} />
             <Route path="learning" element={<MyLearning std_id={id} />} />
-            <Route path="paths/:pathId/levels" element={<Levels std_id={id} />}/>
+            <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
             <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
           </Route>
           <Route path="admin" element={<Admin setCurrentAccountLanding={setCurrentAccount} setFirstNameLanding={setFirstName} setIdLanding={setId}
             setEmailLanding={setEmail} setLastNameLanding={setLastName} setType={setType}/>} >
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
+            <Route path="paths" element={<Paths/>} />
+            <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
+            <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
+
 
 
           </Route>

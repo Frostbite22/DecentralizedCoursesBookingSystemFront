@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-function Levels({std_id})
+function Levels({passedId,type})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0xF2803B2D7eA2078Da4D44E887dC1429437d17731" ; 
@@ -123,7 +123,7 @@ function Levels({std_id})
         setIsLoading(true);
         let studentLevelContract = conn ;
         console.log(conn)
-        const stdToLevelTnx = await studentLevelContract.createStudentLevel(std_id,level_id,levelContractAddress);
+        const stdToLevelTnx = await studentLevelContract.createStudentLevel(passedId,level_id,levelContractAddress);
         const stdToLvl = await stdToLevelTnx.wait(); 
         const eventStdToLvl = stdToLvl.events.find(event => event.event ==='studentLevelCreated');
         const [id,studentId,levelId] = eventStdToLvl.args ;
@@ -163,7 +163,7 @@ function Levels({std_id})
                 <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
-                  <button className="btn" onClick={() => createStdLvl(connStudentLevel,level['id'])}>book now</button>
+                  { type == "student" && <button className="btn" onClick={() => createStdLvl(connStudentLevel,level['id'])}>book now</button> }
                 </div>
               )
             })}
