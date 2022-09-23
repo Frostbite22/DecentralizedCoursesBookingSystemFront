@@ -6,7 +6,6 @@ import studentFactory from '../utils/contracts/StudentFactory.json';
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
-import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 
 
 function Student({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
