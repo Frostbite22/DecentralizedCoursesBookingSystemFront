@@ -99,12 +99,10 @@ function Paths()
                 })
               )
             })}
-        </div>
-
-          
-            <Link to="createPath" state={{connection :connPath}}><button className="btn">add new path</button></Link>
-          
-        
+        </div>  
+            <Link to="createPath">
+              <button className="btn">add new path</button>
+            </Link>
       </>
     )
 }
