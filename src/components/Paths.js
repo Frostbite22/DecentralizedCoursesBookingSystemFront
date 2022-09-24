@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import pathFactory from '../utils/contracts/PathFactory.json' ; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+
 
 
 function Paths()
@@ -86,6 +87,7 @@ function Paths()
     },[pathsLength,connPath]);
   
     return (
+      <>
         <div className="path">
             {isLoading ? <LoadingSpinner message={"path is loading"}/>: ""}
             {paths.map((pathContainer) => {
@@ -98,6 +100,12 @@ function Paths()
               )
             })}
         </div>
+
+          
+            <Link to="createPath" state={{connection :connPath}}><button className="btn">add new path</button></Link>
+          
+        
+      </>
     )
 }
 

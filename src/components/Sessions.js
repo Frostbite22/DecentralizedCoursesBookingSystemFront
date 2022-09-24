@@ -34,8 +34,6 @@ function Sessions()
       }
     }
   
-  
-  
     const getSessionsLength = async (conn) => {
       try {
         let sessionContract = conn ;
