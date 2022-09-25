@@ -39,14 +39,14 @@ function FormCreateLevel()
     {
       setIsLoading(true) ;
       event.preventDefault();
-      let pathName = event.target.elements.pathName.value ;
+      let levelName = event.target.elements.levelName.value ;
       let description = event.target.elements.description.value ;
       let imageUrl = event.target.elements.imageUrl.value ;
       let placesLeft = event.target.elements.placesLeft.value ;
 
         
-      let pathContract = connLevel ;
-      const createLevelTxn = await pathContract.createLevel(pathName,description,imageUrl,placesLeft.toNumber(),location.state.pathId.toNumber())
+      let levelContract = connLevel ;
+      const createLevelTxn = await levelContract.createLevel(levelName,description,imageUrl,placesLeft,location.state.pathId)
       const level = await createLevelTxn.wait();
       const eventLevel = level.events.find(event => event.event === 'levelCreated');
       const [id, name,desc,imgUrl,nbLeft,pathId] = eventLevel.args;
