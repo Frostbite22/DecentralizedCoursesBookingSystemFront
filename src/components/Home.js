@@ -9,6 +9,8 @@ import MyLearning from "./MyLearning";
 import Admin from "./Admin";
 import Student from "./Student";
 import FormCreatePath from "./FormCreatePath";
+import FormCreateLevel from "./FormCreateLevel";
+
 
 function Home()
 {   
@@ -40,8 +42,9 @@ const [type,setType] = useState("")
             setEmailLanding={setEmail} setLastNameLanding={setLastName} setType={setType}/>} >
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
-            <Route path="paths" element={<Paths/>} />
+            <Route path="paths" element={<Paths type={type}/>} />
             <Route path="paths/createPath" element={<FormCreatePath/>} />
+            <Route path="paths/createLevel" element={<FormCreateLevel/>} />
             <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
             <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
 

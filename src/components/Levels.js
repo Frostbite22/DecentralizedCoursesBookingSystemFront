@@ -5,7 +5,7 @@ import studentLevelFactory from '../utils/contracts/StudentLevelFactory.json' ;
 
 import LoadingSpinner from "./LoadingSpinner";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 
 
 function Levels({passedId,type})
@@ -156,6 +156,7 @@ function Levels({passedId,type})
     },[levelsLength,connLevel]);
   
     return (
+      <>
         <div className="path">
           { isLoading ? <LoadingSpinner message={"Please wait"}/> : "" }
             {pathLevels.map((level) => {
@@ -168,6 +169,12 @@ function Levels({passedId,type})
               )
             })}
         </div>
+         {type==="admin" &&
+         <Link to="createLevel" state={{pathId : params.pathId}}>
+           <button className="btn">add new level</button>
+         </Link>
+     }
+     </>
     )
 }
 

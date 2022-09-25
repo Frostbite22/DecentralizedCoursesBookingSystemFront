@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 
 
-function Paths()
+function Paths({type})
 {
     const [connPath, setConnPath] = useState();
     const pathContractAddress = "0x587BD261650F5ed189Fb43d7A94c6A1B5f09e069" ; 
@@ -99,10 +99,12 @@ function Paths()
                 })
               )
             })}
-        </div>  
+        </div> 
+        {type==="admin" &&
             <Link to="createPath">
               <button className="btn">add new path</button>
             </Link>
+        }
       </>
     )
 }

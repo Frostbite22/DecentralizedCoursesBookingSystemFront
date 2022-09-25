@@ -2,6 +2,8 @@ import LoadingSpinner from "./LoadingSpinner";
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
 import pathFactory from '../utils/contracts/PathFactory.json' ; 
+import {useNavigate} from 'react-router-dom' ; 
+
 
 function FormCreatePath()
 {
@@ -9,6 +11,8 @@ function FormCreatePath()
     const [connPath, setConnPath] = useState();
     const pathContractAddress = "0x587BD261650F5ed189Fb43d7A94c6A1B5f09e069" ; 
     const pathContractABI = pathFactory.abi ; 
+
+    const navigate = useNavigate();
 
     function connectPath() {
         const { ethereum } = window;
@@ -42,7 +46,9 @@ function FormCreatePath()
       const eventPath = path.events.find(event => event.event === 'pathCreated');
       const [id, name,desc,imgUrl] = eventPath.args;
       setIsLoading(false);
+      navigate(-1);
       console.log(`created student with id ${id} pathName ${name} and description ${desc} with imgUrl ${imgUrl} `);
+
     }
 
      
