@@ -161,7 +161,7 @@ function Levels({passedId,type})
           { isLoading ? <LoadingSpinner message={"Please wait"}/> : "" }
             {pathLevels.map((level) => {
               return(
-                <div key={level['id']} className="levelInsideDiv" onClick={() => {navigate(`${level['id']}/sessions`)}}>
+                <div key={level['id']} className="levelInsideDiv" style={{ backgroundImage:`url(${level['imgUrl']})`,backgroundRepeat:"no-repeat" }}  onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
                   <div className="divEl"> places left <span className="badge" >{level['placesLeft']}</span></div>
                   { type == "student" && <button className="btn" onClick={() => createStdLvl(connStudentLevel,level['id'])}>book now</button> }

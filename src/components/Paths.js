@@ -94,7 +94,7 @@ function Paths({type})
               return(
                 pathContainer.map((path,index) => {
                   return(
-                    <div key={path['id']} className="pathInsideDiv" onClick={() => {navigate(`${path['id']}/levels`)}}> {path['name']} - {path['description']} </div>
+                    <div key={path['id']} className="pathInsideDiv" style={{ backgroundImage:`url(${path['imgUrl']})`,backgroundRepeat:"no-repeat" }} onClick={() => {navigate(`${path['id']}/levels`)}}> {path['name']} - {path['description']} </div>
                   )
                 })
               )
