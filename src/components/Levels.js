@@ -11,11 +11,11 @@ import { useNavigate ,Link} from "react-router-dom";
 function Levels({passedId,type})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0xF2803B2D7eA2078Da4D44E887dC1429437d17731" ; 
+    const studentLevelContractAddress = "0xDBB31E74b4b091272644b5fbb761486801748a98" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
 
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0x2c094862CDd298BB1ECBBb31e6924639Afc0C92c" ; 
+    const levelContractAddress = "0xFD53E3378D27f99160218E458001bFF866f9AB2d" ; 
     const levelContractABI = levelFactory.abi ; 
 
     const [levelsLength,setlevelsLength] = useState(0); 

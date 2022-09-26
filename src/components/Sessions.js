@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Sessions()
 {
     const [connSession, setConnSession] = useState();
-    const sessionContractAddress = "0xd07ca457C406032fA096C13F58589d6E6aCe8696" ; 
+    const sessionContractAddress = "0xa9BfB7BeB533e4b96E4001D4622ac0fB3292d243" ; 
 
     const sessionContractABI = sessionFactory.abi ; 
     const [sessions, setSessions] = useState([]);
@@ -75,9 +75,10 @@ function Sessions()
     {
       let lvlSessions = []; 
       let levelId = params.levelId ; 
+      console.log(levelId)
       sessions.map((sessionC) => {
         sessionC.map( (session) => {
-          if(session.id == levelId)
+          if(session.levelId == levelId)
           {
             console.log(session)
             lvlSessions.push(session);
