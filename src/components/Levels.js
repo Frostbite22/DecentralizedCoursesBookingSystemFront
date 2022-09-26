@@ -128,6 +128,7 @@ function Levels({passedId,type})
         const eventStdToLvl = stdToLvl.events.find(event => event.event ==='studentLevelCreated');
         const [id,studentId,levelId] = eventStdToLvl.args ;
         console.log("student added to level "); 
+        navigate(-1);
         setIsLoading(false);
       } catch (error) {
         console.log(error);

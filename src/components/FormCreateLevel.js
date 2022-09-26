@@ -14,7 +14,7 @@ function FormCreateLevel()
 
     const navigate = useNavigate();
     const location = useLocation(); 
-     
+    console.log(location.state.pathId)
 
     function connectLevel() {
         const { ethereum } = window;

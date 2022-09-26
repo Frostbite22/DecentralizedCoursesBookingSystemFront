@@ -114,7 +114,7 @@ function MyLearning({std_id})
               return (
                 levelC.map((level) => {
                   return(
-                    <div key={level['id']} className="levelInsideDiv" >
+                    <div key={level['id']} className="levelInsideDiv" style={{ backgroundImage:`url(${level['imgUrl']})`,backgroundRepeat:"no-repeat" }} >
                       <div> {level['name']} - {level['description']}</div> 
                     </div>
                   )
