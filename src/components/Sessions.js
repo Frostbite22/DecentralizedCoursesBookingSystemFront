@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import sessionFactory from '../utils/contracts/SessionFactory.json' ; 
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 
 
-function Sessions()
+function Sessions({type})
 {
     const [connSession, setConnSession] = useState();
     const sessionContractAddress = "0xa9BfB7BeB533e4b96E4001D4622ac0fB3292d243" ; 
@@ -107,6 +107,7 @@ function Sessions()
     },[sessionsLength,connSession]);
   
     return (
+      <>
         <div className="path">
             { isLoading ? <LoadingSpinner message={"Sessions are loading"}/> : "" }
             {levelSessions.map((session) => {
@@ -115,6 +116,13 @@ function Sessions()
               )
             })}
         </div>
+        {type==="admin" &&
+         <Link to="createSession" state={{levelId : params.levelId}}>
+           <button className="btn">add new session</button>
+         </Link>
+        }
+      </>
+        
     )
 }
 
