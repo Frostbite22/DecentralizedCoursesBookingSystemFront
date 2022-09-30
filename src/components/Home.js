@@ -11,6 +11,7 @@ import Student from "./Student";
 import FormCreatePath from "./FormCreatePath";
 import FormCreateLevel from "./FormCreateLevel";
 import FormCreateSession from "./FormCreateSession";
+import Students from "./Students";
 
 
 function Home()
@@ -44,6 +45,7 @@ const [type,setType] = useState("")
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
             <Route path="paths" element={<Paths type={type}/>} />
+            <Route path="students" element={<Students />} />
             <Route path="paths/createPath" element={<FormCreatePath/>} />
             <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
             <Route path="paths/:pathId/levels/createLevel" element={<FormCreateLevel/>} />
