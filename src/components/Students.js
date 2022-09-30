@@ -88,7 +88,7 @@ function Students()
   
     return (
       <>
-        <table>
+        <table id="students">
             {isLoading ? <LoadingSpinner message={"students are loading"}/>: ""}
             <tr>
                 <th>id</th>
