@@ -88,18 +88,32 @@ function Students()
   
     return (
       <>
-        <div className="path">
+        <table>
             {isLoading ? <LoadingSpinner message={"students are loading"}/>: ""}
+            <tr>
+                <th>id</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>account</th>
+                <th>email</th>
+            </tr>
             {students.map((stdContainer) => {
               return(
                 stdContainer.map((student,index) => {
                   return(
-                    <div key={student['id']} className="pathInsideDiv"> {student['firstName']} - {student['lastName']} </div>
+                    <tr>
+                        <td>{student['id']}</td>
+                        <td>{student['firstName']}</td>
+                        <td>{student['lastName']}</td>
+                        <td>{student['account']}</td>
+                        <td>{student['email']}</td>
+
+                    </tr>
                   )
                 })
               )
             })}
-        </div> 
+        </table> 
 
       </>
     )
