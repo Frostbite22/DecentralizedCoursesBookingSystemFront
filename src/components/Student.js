@@ -112,7 +112,7 @@ const getStudentByAcc = async (connStudent) =>
               {
                 isLoggedIn && (
                   <div>
-                    <NavBar firstName={firstName} logout={logout}/>
+                    <NavBar firstName={firstName} type={"student"} logout={logout}/>
                     <Outlet/>
                   </div>
                 )

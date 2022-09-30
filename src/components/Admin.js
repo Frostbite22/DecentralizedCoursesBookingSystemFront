@@ -116,7 +116,7 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
                   {
                     isLoggedIn && (
                       <div>
-                        <NavBar firstName={firstName} logout={logout}/>
+                        <NavBar firstName={firstName} type="admin" logout={logout}/>
                         <Outlet/>
                       </div>
                     )
