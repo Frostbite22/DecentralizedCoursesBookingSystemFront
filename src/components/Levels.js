@@ -201,7 +201,7 @@ function Levels({passedId,type,fromLevels})
         </table> 
 }
         </div>
-        {type==="admin" &&
+        {type==="admin" && !fromLevels &&
          <Link to="createLevel" state={{pathId : params.pathId}}>
            <button className="btn">add new level</button>
          </Link>
