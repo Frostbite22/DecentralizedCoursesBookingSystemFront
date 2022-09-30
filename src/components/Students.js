@@ -88,8 +88,9 @@ function Students()
   
     return (
       <>
-        <table id="students">
-            {isLoading ? <LoadingSpinner message={"students are loading"}/>: ""}
+        {isLoading ? <LoadingSpinner message={"students are loading"}/>: ""}
+        <table id="tableLayout">
+            <thead>
             <tr>
                 <th>id</th>
                 <th>firstName</th>
@@ -97,22 +98,24 @@ function Students()
                 <th>account</th>
                 <th>email</th>
             </tr>
+            </thead>
+            <tbody>
             {students.map((stdContainer) => {
               return(
                 stdContainer.map((student,index) => {
                   return(
-                    <tr>
+                    <tr key={student['id']}>
                         <td>{student['id']}</td>
                         <td>{student['firstName']}</td>
                         <td>{student['lastName']}</td>
                         <td>{student['account']}</td>
                         <td>{student['email']}</td>
-
                     </tr>
                   )
                 })
               )
             })}
+            </tbody>
         </table> 
 
       </>

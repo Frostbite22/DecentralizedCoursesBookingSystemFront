@@ -45,12 +45,14 @@ const [type,setType] = useState("")
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
             <Route path="paths" element={<Paths type={type}/>} />
-            <Route path="students" element={<Students />} />
             <Route path="paths/createPath" element={<FormCreatePath/>} />
             <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
             <Route path="paths/:pathId/levels/createLevel" element={<FormCreateLevel/>} />
             <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions type={type}/>}/>
             <Route path="paths/:pathId/levels/:levelId/sessions/createSession" element={<FormCreateSession/>}/>
+            <Route path="levels" element={<Levels type={type} fromLevels={true}/>} />
+
+            <Route path="students" element={<Students />} />
 
 
 

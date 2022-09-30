@@ -13,8 +13,10 @@ function NavBar(props)
             { props.type === "student" &&
             <a key="learning" onClick={() => {navigate("learning")}}>my learning</a>
             }
-             { props.type === "admin" &&
+             { props.type === "admin" && (<>
             <a key="students" onClick={() => {navigate("students")}}>students </a>
+            <a key="levels" onClick={() => {navigate("levels")}}>levels </a> </>)
+
             }
         </div>
         <div className='right'>

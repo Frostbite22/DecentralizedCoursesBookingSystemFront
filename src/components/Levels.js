@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate ,Link} from "react-router-dom";
 
 
-function Levels({passedId,type})
+function Levels({passedId,type,fromLevels})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
     const studentLevelContractAddress = "0xDBB31E74b4b091272644b5fbb761486801748a98" ; 
@@ -160,7 +160,7 @@ function Levels({passedId,type})
       <>
         <div className="path">
           { isLoading ? <LoadingSpinner message={"Please wait"}/> : "" }
-            {pathLevels.map((level) => {
+          { !fromLevels && pathLevels.map((level) => {
               return(
                 <div key={level['id']} className="levelInsideDiv" style={{ backgroundImage:`url(${level['imgUrl']})`,backgroundRepeat:"no-repeat" }}  onClick={() => {navigate(`${level['id']}/sessions`)}}>
                   <div> {level['name']} - {level['description']}</div> 
@@ -169,6 +169,37 @@ function Levels({passedId,type})
                 </div>
               )
             })}
+
+          { type==="admin" && fromLevels &&
+          <table id="tableLayout">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>description</th>
+                <th>placesLeft</th>
+                <th>id_path</th>
+            </tr>
+            </thead>
+            <tbody>
+            {levels.map((lvlContainer) => {
+              return(
+                lvlContainer.map((level,index) => {
+                  return(
+                    <tr key={level['id']}>
+                        <td>{level['id']}</td>
+                        <td>{level['name']}</td>
+                        <td>{level['description']}</td>
+                        <td>{level['placesLeft']}</td>
+                        <td>{level['id_path']}</td>
+                    </tr>
+                  )
+                })
+              )
+            })}
+            </tbody>
+        </table> 
+}
         </div>
         {type==="admin" &&
          <Link to="createLevel" state={{pathId : params.pathId}}>
