@@ -11,11 +11,11 @@ import { useNavigate ,Link} from "react-router-dom";
 function Levels({passedId,type,fromLevels})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0xDBB31E74b4b091272644b5fbb761486801748a98" ; 
+    const studentLevelContractAddress = "0xe208910b1132dfCF7A7B717C12aEa5Fe79CfBe68" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
 
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0xFD53E3378D27f99160218E458001bFF866f9AB2d" ; 
+    const levelContractAddress = "0xa473E1E148f59813F088646A9a9777c6AfB63236" ; 
     const levelContractABI = levelFactory.abi ; 
 
     const [levelsLength,setlevelsLength] = useState(0); 
@@ -188,7 +188,7 @@ function Levels({passedId,type,fromLevels})
                   return(
                     <tr key={level['id']}>
                         <td>{level['id']}</td>
-                        <td>{level['name']}</td>
+                        <td><Link to={`${level['id']}/students`}>{level['name']}</Link></td>
                         <td>{level['description']}</td>
                         <td>{level['placesLeft']}</td>
                         <td>{level['id_path']}</td>

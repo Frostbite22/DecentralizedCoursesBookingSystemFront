@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import studentFactory from '../utils/contracts/StudentFactory.json' ; 
-import { useNavigate ,Link} from "react-router-dom";
+import studentLevelFactory from '../utils/contracts/StudentLevelFactory.json' ; 
+
+import { useNavigate ,useParams} from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 
 
@@ -9,14 +11,20 @@ function Students()
 {
 
     const [connStudent, setConnStudent] = useState();
-    const studentContractAddress = "0xf92BB0b251E13575Ce746869Af7EC2A62B906A98" ; 
-
+    const studentContractAddress = "0x532b3c5885FD5Df7f4B346e3fbFEae3a69aCfeC6" ; 
     const studentContractABI = studentFactory.abi ; 
+
     const [students, setStudents] = useState([]);
     const [studentsLength,setStudentsLength] = useState(0); 
     const [isLoading, setIsLoading] = useState(false);
 
-  
+    const [connStudentLevel, setConnStudentLevel] = useState();
+    const studentLevelContractAddress = "0xe208910b1132dfCF7A7B717C12aEa5Fe79CfBe68" ; 
+    const studentLevelContractABI = studentLevelFactory.abi ; 
+
+    let params = useParams() ; 
+    let levelId = params.levelId ; 
+
     function connectStudent() {
       const { ethereum } = window;
       if (ethereum) {
@@ -29,6 +37,24 @@ function Students()
         );
   
         setConnStudent(studentContract); 
+  
+      } else {
+        console.log("Ethereum object doesn't exist ");
+      }
+    }
+
+    function connectStudentLevel() {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const studentLevelContract = new ethers.Contract(
+          studentLevelContractAddress,
+          studentLevelContractABI,
+          signer
+        );
+  
+        setConnStudentLevel(studentLevelContract); 
   
       } else {
         console.log("Ethereum object doesn't exist ");
@@ -63,10 +89,40 @@ function Students()
       {
         const [id,firstName,lastName,account,email] = await getStudent(conn,i) ;
         let student = [] ;
-        student.push({"id": id, "firstName" : firstName,"lastName" : lastName, "account" : account,"email" : email });
-        setStudents(students => [...students,student] );
+        if (levelId)
+        {
+          let studentsLevelId = await getLevelStudentsId(connStudentLevel);
+          console.log(studentsLevelId);
+          for (let j=0 ; j < studentsLevelId.length ; j++)
+          {
+            if(studentsLevelId[j] == id )
+            {
+              student.push({"id": id, "firstName" : firstName,"lastName" : lastName, "account" : account,"email" : email });
+              setStudents(students => [...students,student] );
+    
+            }
+          }  
+        }
+        else 
+        {
+          student.push({"id": id, "firstName" : firstName,"lastName" : lastName, "account" : account,"email" : email });
+          setStudents(students => [...students,student] );
+        }
       }
       setIsLoading(false);
+    }
+
+    const getLevelStudentsId = async (conn) => 
+    {
+      try{
+        let studentLevelContract = conn ;
+        const getStudentsLevelId = await studentLevelContract.getLevelStudentsId(levelId);
+        return getStudentsLevelId ;
+      }catch(err)
+      {
+        console.log(err)
+        return [];
+      }
     }
 
     let navigate = useNavigate() ;
@@ -75,16 +131,22 @@ function Students()
     useEffect(() => {
       connectStudent();
     },[]);
+
+    useEffect(() => {
+      connectStudentLevel();
+    },[]);
   
   
   
     useEffect(() => {
-      studentsLength!==0 ?allStudents(connStudent): connectStudent();
+      studentsLength!==0 ?allStudents(connStudent): connectStudent() ; connectStudentLevel();
     },[studentsLength]);
 
     useEffect(() => {
-        connStudent!==undefined ?getStudentsLength(connStudent): connectStudent();
+        connStudent!==undefined ?getStudentsLength(connStudent): connectStudent(); connectStudentLevel();
     },[studentsLength,connStudent]);
+
+ 
   
     return (
       <>
