@@ -108,7 +108,7 @@ function Students()
                         <td>{student['id']}</td>
                         <td>{student['firstName']}</td>
                         <td>{student['lastName']}</td>
-                        <td>{student['account']}</td>
+                        <td>{student['account'].slice(2,9)}</td>
                         <td>{student['email']}</td>
                     </tr>
                   )
