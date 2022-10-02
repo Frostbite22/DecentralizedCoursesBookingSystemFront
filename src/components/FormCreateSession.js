@@ -9,7 +9,7 @@ function FormCreateSession()
 {
     const [isLoading, setIsLoading] = useState(false);
     const [connSession, setConnSession] = useState();
-    const sessionContractAddress = "0xDCb07b89b0a804E9131063bB5633207A5115665e" ; 
+    const sessionContractAddress = "0x558e0A0Ec7d2402C2bbcE062434716A9a7AC5E0C" ; 
     const sessionContractABI = sessionFactory.abi ; 
 
     const navigate = useNavigate();

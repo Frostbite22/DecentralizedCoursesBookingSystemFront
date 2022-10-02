@@ -8,7 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Sessions({type})
 {
     const [connSession, setConnSession] = useState();
-    const sessionContractAddress = "0xa9BfB7BeB533e4b96E4001D4622ac0fB3292d243" ; 
+    const sessionContractAddress = "0x558e0A0Ec7d2402C2bbcE062434716A9a7AC5E0C" ; 
 
     const sessionContractABI = sessionFactory.abi ; 
     const [sessions, setSessions] = useState([]);

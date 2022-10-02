@@ -12,7 +12,7 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
     {   
         const [currentAccount, setCurrentAccount] = useState("");
         const [connAdmin, setconnAdmin] = useState();
-        const adminContractAddress = "0x9556Ee0c76e1d968D620c3dE87F91A8Bd404DE3E"
+        const adminContractAddress = "0x03581d6BCA0685EA4E115e165ff91E4435Cba49F"
         const adminContractABI = adminFactory.abi ; 
         const [isLoggedIn,setIsLoggedIn] = useState(false);
     

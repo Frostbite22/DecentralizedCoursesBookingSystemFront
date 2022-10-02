@@ -7,13 +7,12 @@ import LoadingSpinner from "./LoadingSpinner";
 function MyLearning({std_id})
 {
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0xe208910b1132dfCF7A7B717C12aEa5Fe79CfBe68" ; 
+    const studentLevelContractAddress = "0xD42a39C92a5b5A2F494e531cF595f780a2fd385a" ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
-    const [stdLevelsIds,setStdLevelsIds] = useState([]) ; 
     const [studentLevels,setStudentLevels] = useState([]);
 
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0xa473E1E148f59813F088646A9a9777c6AfB63236" ; 
+    const levelContractAddress = "0xc44E6Bf11071D19DB3755EE3ACc75aA6C2bF7919" ; 
     const levelContractABI = levelFactory.abi ; 
 
 
@@ -55,15 +54,20 @@ function MyLearning({std_id})
       }
     }
 
-    const getStudentLevelsId = async (conn) => {
-        try {
-          let studentLevelContract = conn ;
-          const std_level_ids = await studentLevelContract.getStudentLevelsId(std_id);
-          setStdLevelsIds([...new Set(std_level_ids)]);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+    const getStudentLevelsId = async (conn) => 
+    {
+      try{
+        let studentLevelContract = conn ;
+        console.log(std_id)
+        const getStudentsLevelId = await studentLevelContract.getStudentLevelsId(std_id);
+        return getStudentsLevelId ;
+      }catch(err)
+      {
+        console.log(err)
+        return [];
+      }
+    }
+
   
       const getLevel = async (conn,index) => {
         try {
@@ -77,9 +81,9 @@ function MyLearning({std_id})
   
       const allStudentLevels = async (conn) => {
         setIsLoading(true);
+        let stdLevelsIds =await getStudentLevelsId(connStudentLevel) ;
         for(let i=0 ; i <stdLevelsIds.length ; i++)
         {
-          console.log(stdLevelsIds[i])
           const [id,name,description,imgUrl,placesLeft,id_path] = await getLevel(conn,stdLevelsIds[i]) ;
           let level = [] ;
           level.push({"id": id, "name" : name, "description":description,"imgUrl":imgUrl,"placesLeft" :placesLeft,"id_path": id_path});
@@ -93,12 +97,9 @@ function MyLearning({std_id})
       },[]);
 
 
+ 
     useEffect(() => {
-      stdLevelsIds == [] ? getStudentLevelsId(connStudentLevel) : allStudentLevels(connLevel)
-    },[stdLevelsIds])
-
-    useEffect(() => {
-      connStudentLevel == undefined ? connectStudentLevel() : getStudentLevelsId(connStudentLevel)
+      connStudentLevel == undefined ? connectStudentLevel() : allStudentLevels(connLevel)
     },[connStudentLevel])
 
 

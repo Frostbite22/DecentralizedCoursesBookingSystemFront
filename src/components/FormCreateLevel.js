@@ -9,7 +9,7 @@ function FormCreateLevel()
 {
     const [isLoading, setIsLoading] = useState(false);
     const [connLevel, setConnlevel] = useState();
-    const levelContractAddress = "0xa473E1E148f59813F088646A9a9777c6AfB63236" ; 
+    const levelContractAddress = "0xc44E6Bf11071D19DB3755EE3ACc75aA6C2bF7919" ; 
     const levelContractABI = levelFactory.abi ; 
 
     const navigate = useNavigate();

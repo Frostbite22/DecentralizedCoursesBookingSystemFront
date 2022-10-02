@@ -9,7 +9,7 @@ function FormCreatePath()
 {
     const [isLoading, setIsLoading] = useState(false);
     const [connPath, setConnPath] = useState();
-    const pathContractAddress = "0xa120d22888ee93947eb93B4A1C3555B2fdc5B4dB" ; 
+    const pathContractAddress = "0x605DC87Ef50b246CfB1384492d5F68D0E194C629" ; 
     const pathContractABI = pathFactory.abi ; 
 
     const navigate = useNavigate();

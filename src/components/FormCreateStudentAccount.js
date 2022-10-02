@@ -3,7 +3,7 @@ import { useEffect, useState,useLayoutEffect } from "react";
 
 
 
-function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setIsLoggedIn}) 
+function FormCreateStudentAccount({setCurrentAccount,currentAccount,connection,studentsNumber,setIsLoggedIn}) 
 {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +23,7 @@ function FormCreateStudentAccount({currentAccount,connection,studentsNumber,setI
     const [id, first,last,account,email] = eventStd.args;
     setIsLoggedIn(true);
     studentsNumber(connection);
+    setCurrentAccount(currentAccount);
     setIsLoading(false);
     console.log(`created student with id ${id} firstName ${first} and lastName ${last} with acc ${account} and email ${email}`);
   }
