@@ -9,7 +9,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Paths({type})
 {
     const [connPath, setConnPath] = useState();
-    const pathContractAddress = "0x605DC87Ef50b246CfB1384492d5F68D0E194C629" ; 
+    const pathContractAddress = process.env.REACT_APP_PATH_CONTRACT_ADDRESS; 
 
     const pathContractABI = pathFactory.abi ; 
     const [paths, setPaths] = useState([]);

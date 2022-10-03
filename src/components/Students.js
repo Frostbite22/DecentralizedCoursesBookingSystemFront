@@ -11,7 +11,7 @@ function Students()
 {
 
     const [connStudent, setConnStudent] = useState();
-    const studentContractAddress = "0xCA6ae6818f4e04d4588a5b3110B9B6F5B2DAed2E" ; 
+    const studentContractAddress = process.env.REACT_APP_STUDENT_CONTRACT_ADDRESS ; 
     const studentContractABI = studentFactory.abi ; 
 
     const [students, setStudents] = useState([]);
@@ -19,7 +19,7 @@ function Students()
     const [isLoading, setIsLoading] = useState(false);
 
     const [connStudentLevel, setConnStudentLevel] = useState();
-    const studentLevelContractAddress = "0xD42a39C92a5b5A2F494e531cF595f780a2fd385a" ; 
+    const studentLevelContractAddress = process.env.REACT_APP_STUDENT_LEVEL_CONTRACT_ADDRESS ; 
     const studentLevelContractABI = studentLevelFactory.abi ; 
 
     let params = useParams() ; 

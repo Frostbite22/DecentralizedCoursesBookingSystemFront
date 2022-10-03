@@ -4,7 +4,6 @@ import connectWallet from "../utils/functions/checkWallet";
 import adminFactory from '../utils/contracts/AdminFactory.json';
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
-import background from '../welcome-admin.jpg' ; 
 
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
@@ -14,7 +13,7 @@ function Admin({setFirstNameLanding,setLastNameLanding,setCurrentAccountLanding,
     {   
         const [currentAccount, setCurrentAccount] = useState("");
         const [connAdmin, setconnAdmin] = useState();
-        const adminContractAddress = "0x03581d6BCA0685EA4E115e165ff91E4435Cba49F"
+        const adminContractAddress = process.env.REACT_APP_ADMIN_CONTRACT_ADDRESS;
         const adminContractABI = adminFactory.abi ; 
         const [isLoggedIn,setIsLoggedIn] = useState(false);
     
