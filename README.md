@@ -2,6 +2,10 @@
 A Decentralized courses booking system built on top of Ethereum blockchain using Hardhat, ethers, reactJS as technologies and many third party libraries <br>
 The hardhat project related to this frontend [hardhat project](https://github.com/Frostbite22/DecentralizedCoursesBookingSystem)
 
+## Prerequisites 
+You need to have a crypto Wallet and connect with an account <br>
+For web users, you can get a wallet through [MetaMask](https://metamask.io/) 
+
 ## Configuration 
 Create .env file in the root directory and set up the contract addresses <br>
 The contract address are produced by compile the smart contracts from the [hardhat project](https://github.com/Frostbite22/DecentralizedCoursesBookingSystem) <br>
