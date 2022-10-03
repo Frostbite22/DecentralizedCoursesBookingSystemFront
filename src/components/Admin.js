@@ -4,6 +4,8 @@ import connectWallet from "../utils/functions/checkWallet";
 import adminFactory from '../utils/contracts/AdminFactory.json';
 import { useEffect, useState,useLayoutEffect } from "react";
 import { ethers } from "ethers";
+import background from '../welcome-admin.jpg' ; 
+
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 
 

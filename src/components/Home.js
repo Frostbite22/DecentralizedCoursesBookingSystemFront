@@ -2,6 +2,8 @@ import Profile from "./Profile";
 import { useEffect, useState,useLayoutEffect } from "react";
 import {BrowserRouter, Routes, Route, Link ,  useLocation,Outlet, useNavigate} from 'react-router-dom' ; 
 import background from '../welcome.jpg' ; 
+import backgroundAdmin from '../welcome-admin.jpg' ; 
+
 import Paths from "./Paths";
 import Levels from "./Levels";
 import Sessions from "./Sessions";
@@ -42,6 +44,9 @@ const [type,setType] = useState("")
           </Route>
           <Route path="admin" element={<Admin setCurrentAccountLanding={setCurrentAccount} setFirstNameLanding={setFirstName} setIdLanding={setId}
             setEmailLanding={setEmail} setLastNameLanding={setLastName} setType={setType}/>} >
+            <Route index element={
+            <img className='background' alt="background-admin" src={backgroundAdmin} />} />
+
             <Route path="profile" element={
             <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
             <Route path="paths" element={<Paths type={type}/>} />
