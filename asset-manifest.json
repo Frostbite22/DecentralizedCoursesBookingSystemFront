@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/DecentralizedCoursesBookingSystemFront/static/css/main.20a46061.css",
-    "main.js": "/DecentralizedCoursesBookingSystemFront/static/js/main.bda0c2dc.js",
-    "static/js/787.608cd961.chunk.js": "/DecentralizedCoursesBookingSystemFront/static/js/787.608cd961.chunk.js",
-    "static/media/welcome-admin.jpg": "/DecentralizedCoursesBookingSystemFront/static/media/welcome-admin.63f3dda3eab35f8fcd02.jpg",
-    "static/media/welcome.jpg": "/DecentralizedCoursesBookingSystemFront/static/media/welcome.d89d60cf8e7e569c47d9.jpg",
-    "static/media/grad.jpg": "/DecentralizedCoursesBookingSystemFront/static/media/grad.f486a0a19cd3b5dd86cb.jpg",
-    "static/media/neon.jpg": "/DecentralizedCoursesBookingSystemFront/static/media/neon.76169e1351d5454086f3.jpg",
-    "index.html": "/DecentralizedCoursesBookingSystemFront/index.html",
-    "main.20a46061.css.map": "/DecentralizedCoursesBookingSystemFront/static/css/main.20a46061.css.map",
-    "main.bda0c2dc.js.map": "/DecentralizedCoursesBookingSystemFront/static/js/main.bda0c2dc.js.map",
-    "787.608cd961.chunk.js.map": "/DecentralizedCoursesBookingSystemFront/static/js/787.608cd961.chunk.js.map"
+    "main.css": "./static/css/main.d8619c29.css",
+    "main.js": "./static/js/main.0851fd2c.js",
+    "static/js/787.608cd961.chunk.js": "./static/js/787.608cd961.chunk.js",
+    "static/media/welcome-admin.jpg": "./static/media/welcome-admin.63f3dda3eab35f8fcd02.jpg",
+    "static/media/welcome.jpg": "./static/media/welcome.d89d60cf8e7e569c47d9.jpg",
+    "static/media/grad.jpg": "./static/media/grad.f486a0a19cd3b5dd86cb.jpg",
+    "static/media/neon.jpg": "./static/media/neon.76169e1351d5454086f3.jpg",
+    "index.html": "./index.html",
+    "main.d8619c29.css.map": "./static/css/main.d8619c29.css.map",
+    "main.0851fd2c.js.map": "./static/js/main.0851fd2c.js.map",
+    "787.608cd961.chunk.js.map": "./static/js/787.608cd961.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.20a46061.css",
-    "static/js/main.bda0c2dc.js"
+    "static/css/main.d8619c29.css",
+    "static/js/main.0851fd2c.js"
   ]
 }
