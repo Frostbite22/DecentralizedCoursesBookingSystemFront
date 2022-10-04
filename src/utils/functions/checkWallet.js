@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 
 export default async function checkIfWalletIsConnected(setCurrentAccount,setCurrentAccountLanding)
 {
@@ -14,10 +16,14 @@ export default async function checkIfWalletIsConnected(setCurrentAccount,setCurr
           /*
            * Check if we're authorized to access the user's wallet
            */
-          const accounts = await ethereum.request({ method: "eth_accounts" });
+          /*const accounts = await ethereum.request({ method: "eth_accounts" });
+          console.log(accounts);*/
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          await provider.send('eth_requestAccounts', []); // <- this promps user to connect metamask
+          const signer = provider.getSigner();
     
-          if (accounts.length !== 0) {
-            const account = accounts[0];
+          if (signer !== undefined) {
+            const account = await signer.getAddress();
             console.log("Found an authorized account:", account);
             setCurrentAccount(account);
             setCurrentAccountLanding(account);

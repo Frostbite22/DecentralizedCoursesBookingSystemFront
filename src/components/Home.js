@@ -42,28 +42,7 @@ const [type,setType] = useState("")
             <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
             <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions/>}/>
           </Route>
-          <Route path="admin" element={<Admin setCurrentAccountLanding={setCurrentAccount} setFirstNameLanding={setFirstName} setIdLanding={setId}
-            setEmailLanding={setEmail} setLastNameLanding={setLastName} setType={setType}/>} >
-            <Route index element={
-            <img className='background' alt="background-admin" src={backgroundAdmin} />} />
-
-            <Route path="profile" element={
-            <Profile account={currentAccount} firstName={firstName} lastName={lastName} email={email} type={type}/>}/>
-            <Route path="paths" element={<Paths type={type}/>} />
-            <Route path="paths/createPath" element={<FormCreatePath/>} />
-            <Route path="paths/:pathId/levels" element={<Levels passedId={id} type={type} />}/>
-            <Route path="paths/:pathId/levels/createLevel" element={<FormCreateLevel/>} />
-            <Route path="paths/:pathId/levels/:levelId/sessions" element={<Sessions type={type}/>}/>
-            <Route path="paths/:pathId/levels/:levelId/sessions/createSession" element={<FormCreateSession/>}/>
-            <Route path="levels" element={<Levels type={type} fromLevels={true}/>} />
-            <Route path="levels/:levelId/students" element={<Students/>} />
-
-            <Route path="students" element={<Students />} />
-
-
-
-
-          </Route>
+         
 
         
 
