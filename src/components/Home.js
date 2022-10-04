@@ -27,7 +27,7 @@ const [type,setType] = useState("")
 
 
       return (
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/DecentralizedCoursesBookingSystemFront">
         <Routes>
           <Route path="/" element={
             <Student setCurrentAccountLanding={setCurrentAccount} setFirstNameLanding={setFirstName} setIdLanding={setId}
