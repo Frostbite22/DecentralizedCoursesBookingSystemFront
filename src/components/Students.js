@@ -117,7 +117,8 @@ function Students()
       try{
         let studentLevelContract = conn ;
         const getStudentsLevelId = await studentLevelContract.getLevelStudentsId(levelId);
-        return getStudentsLevelId ;
+        return [...new Set(getStudentsLevelId)] ;
+        ;
       }catch(err)
       {
         console.log(err)
