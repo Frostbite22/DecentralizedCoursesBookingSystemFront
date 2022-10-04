@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/DecentralizedCoursesBookingSystemFront/student/",
+  "start_url": "/DecentralizedCoursesBookingSystemFront",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
