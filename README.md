@@ -21,6 +21,8 @@ REACT_APP_ADMIN_CONTRACT_ADDRESS=
 
 ## Available Scripts
 
+Install using docker from this repository [https://hub.docker.com/r/medfares/decentralizedbooking](https://hub.docker.com/r/medfares/decentralizedbooking)  
+
 In the project directory, you can run:
 
 ### `npm i`
